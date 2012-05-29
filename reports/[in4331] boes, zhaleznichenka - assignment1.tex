@@ -73,7 +73,7 @@ Output:
 \end{lstlisting}
   
 \item 
-  \emph{All movie titles, i.e. the textual value of \lstinline{title} elements} 
+  \emph{Display all movie titles, i.e. the textual value of \lstinline{title} elements.} 
   
 Query: 
   
@@ -94,7 +94,7 @@ Spider-Man
 \end{lstlisting}  
 
 \item 
-  \emph{Titles of the movies published after 2000.} 
+  \emph{Display the titles of the movies published after 2000.} 
   
 Query: 
   
@@ -113,7 +113,7 @@ Spider-Man
 \end{lstlisting}  
 
 \item 
-  \emph{Summary of \textbf{Spider-Man}} 
+  \emph{Show summary of \textbf{Spider-Man}.} 
   
 Query: 
   
@@ -128,7 +128,7 @@ On a school field trip, Peter Parker (Maguire) is bitten by a genetically modifi
 \end{lstlisting}  
 
 \item 
-  \emph{Who is the director of \textbf{Heat}} 
+  \emph{Who is the director of \textbf{Heat}?} 
   
 Query: 
   
@@ -162,8 +162,96 @@ Marie Antoinette
 Spider-Man
 \end{lstlisting}   
 
+\item
+  \emph{ Which movies have a summary?}
+  
+Query:
+  
+\begin{lstlisting}
+doc('/db/movies/movies.xml')/movies/movie[count(summary) > 0]/title/text()
+\end{lstlisting}
+  
+Output:
+  
+\begin{lstlisting}
+A History of Violence
+Heat
+Unforgiven
+Match Point
+Marie Antoinette
+Spider-Man
+\end{lstlisting}
+
+
+\item
+  \emph{ Which movies do \lstinline{not} have a summary?}
+  
+Query:
+  
+\begin{lstlisting}
+doc('/db/movies/movies.xml')/movies/movie[count(summary) = 0]/title/text()
+\end{lstlisting}
+  
+Output:
+  
+\begin{lstlisting}
+Lost in Translation
+\end{lstlisting}
+
+\item
+  \emph{Which titles of the movies published more than 5 years ago? }
+  
+Query:
+  
+\begin{lstlisting}
+doc('/db/movies/movies.xml')/movies/movie[year < (year-from-date(current-date()) - 5)]/title/text()
+\end{lstlisting}
+  
+Output:
+  
+\begin{lstlisting}
+A History of Violence
+Heat
+Unforgiven
+Match Point
+Lost in Translation
+Marie Antoinette
+Spider-Man
+\end{lstlisting}
+
+\item
+  \emph{ What was the role of Clint Eastwood in \textbf{Unforgiven}? }
+  
+Query:
+  
+\begin{lstlisting}
+doc('/db/movies/movies.xml')/movies/movie[title = 'Unforgiven']/actor[last_name = 'Eastwood' and first_name = 'Clint']/role/text()
+\end{lstlisting}
+  
+Output:
+  
+\begin{lstlisting}
+William 'Bill' Munny
+\end{lstlisting}
+  
+
+\item
+  \emph{ What is the \lstinline{last} movie in the document? }
+  
+Query:
+  
+\begin{lstlisting}
+doc('/db/movies/movies.xml')/movies/movie[last()]/title/text()
+\end{lstlisting}
+  
+Output:
+  
+\begin{lstlisting}
+Spider-Man
+\end{lstlisting} 
+
 \item 
-  \emph{Title of the film that immediately precedes \textbf{Marie Antoinette} in the document.} 
+  \emph{Display title of the film that immediately precedes \textbf{Marie Antoinette} in the document.} 
   
 Query: 
   
