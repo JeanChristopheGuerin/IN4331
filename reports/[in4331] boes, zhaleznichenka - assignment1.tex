@@ -175,37 +175,100 @@ Spider-Man
 \end{lstlisting}   
 
 \item 
-  \emph{} 
+  \emph{  Which movies have a summary?} 
   
 Query: 
   
 \begin{lstlisting}
-
+doc('/db/movies/movies.xml')/movies/movie[count(summary) > 0]/title/text()
 \end{lstlisting}
   
 Output:
   
 \begin{lstlisting}
+A History of Violence
+Heat
+Unforgiven
+Match Point
+Marie Antoinette
+Spider-Man
+\end{lstlisting}
 
-\end{lstlisting}   
 
 \item 
-  \emph{} 
+  \emph{  Which movies do \lstinline{not} have a summary?} 
   
 Query: 
   
 \begin{lstlisting}
-
+doc('/db/movies/movies.xml')/movies/movie[count(summary) = 0]/title/text()
 \end{lstlisting}
   
 Output:
   
 \begin{lstlisting}
+Lost in Translation
+\end{lstlisting}
 
-\end{lstlisting}   
+\item 
+  \emph{  Titles of the movies published more than 5 years ago? } 
+  
+Query: 
+  
+\begin{lstlisting}
+doc('/db/movies/movies.xml')/movies/movie[year < (year-from-date(current-date()) - 5)]/title/text()
+\end{lstlisting}
+  
+Output:
+  
+\begin{lstlisting}
+A History of Violence
+Heat
+Unforgiven
+Match Point
+Lost in Translation
+Marie Antoinette
+Spider-Man
+\end{lstlisting}
+
+\item 
+  \emph{  What was the role of Clint Eastwood in \lstinline{Unforgiven}? } 
+  
+Query: 
+  
+\begin{lstlisting}
+doc('/db/movies/movies.xml')/movies/movie[title = 'Unforgiven']/actor[last_name = 'Eastwood' and first_name = 'Clint']/role/text()
+\end{lstlisting}
+  
+Output:
+  
+\begin{lstlisting}
+William 'Bill' Munny
+\end{lstlisting}
+  
+
+\item 
+  \emph{  What is the \lstinline{last} movie in the document? } 
+  
+Query: 
+  
+\begin{lstlisting}
+doc('/db/movies/movies.xml')/movies/movie[last()]/title/text()
+\end{lstlisting}
+  
+Output:
+  
+\begin{lstlisting}
+Spider-Man
+\end{lstlisting}  
   
 \end{enumerate}
 
+
 \subsection{XQuery}
+
+\begin{enumerate}
+\item  
+\end{enumerate}
 
 \end{document}
