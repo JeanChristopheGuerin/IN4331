@@ -10,7 +10,7 @@
 \definecolor{mauve}{rgb}{0.58,0,0.82}
  
 \lstset{ %
-  language=XML,                % the language of the code
+  language=XML,
   basicstyle=\ttfamily,           % the size of the fonts that are used for the code
   numbers=left,                   % where to put the line-numbers
   numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
@@ -30,7 +30,6 @@
   commentstyle=\color{dkgreen},       % comment style
   stringstyle=\color{mauve},         % string literal style
   escapeinside={\%*}{*)},            % if you want to add a comment within your code
-  morekeywords={doc, collection}               % if you want to add more keywords to the set
 }
 
 \begin{document}
@@ -72,6 +71,138 @@ Output:
   <title>Spider-Man</title>
 </titles>
 \end{lstlisting}
+  
+\item 
+  \emph{All movie titles, i.e. the textual value of \lstinline{title} elements} 
+  
+Query: 
+  
+\begin{lstlisting}
+doc('/db/movies/movies.xml')/movies//title/text()
+\end{lstlisting}
+  
+Output:
+  
+\begin{lstlisting}
+A History of Violence
+Heat
+Unforgiven
+Match Point
+Lost in Translation
+Marie Antoinette
+Spider-Man
+\end{lstlisting}  
+
+\item 
+  \emph{Titles of the movies published after 2000.} 
+  
+Query: 
+  
+\begin{lstlisting}
+for $m in doc('/db/movies/movies.xml')/movies/movie
+where $m/year > 2000
+return
+    $m/title/text()  
+\end{lstlisting}
+  
+Output:
+  
+\begin{lstlisting}
+A History of Violence
+Match Point
+Lost in Translation
+Marie Antoinette
+Spider-Man
+\end{lstlisting}  
+
+\item 
+  \emph{Summary of \textbf{Spider-Man}} 
+  
+Query: 
+  
+\begin{lstlisting}
+for $m in doc('/db/movies/movies.xml')/movies/movie
+where $m/title = "Spider-Man"
+return
+    $m/summary/text()
+\end{lstlisting}
+  
+Output:
+  
+\begin{lstlisting}
+On a school field trip, Peter Parker (Maguire) is bitten by a genetically modified spider. He wakes up the next morning with incredible powers. After witnessing the death of his uncle (Robertson), Parkers decides to put his new skills to use in order to rid the city of evil, but someone else has other plans. The Green Goblin (Dafoe) sees Spider-Man as a threat and must dispose of him. Even if it means the Goblin has to target Parker Aunt (Harris) and the girl he secretly pines for (Dunst).
+\end{lstlisting}  
+
+\item 
+  \emph{Who is the director of \textbf{Heat}} 
+  
+Query: 
+  
+\begin{lstlisting}
+for $m in doc('/db/movies/movies.xml')/movies/movie
+where $m/title = "Heat"
+return
+    $m/director
+\end{lstlisting}
+  
+Output:
+  
+\begin{lstlisting}
+<director>
+  <last_name>Mann</last_name>
+  <first_name>Michael</first_name>
+  <birth_date>1943</birth_date>
+</director>
+\end{lstlisting}  
+  
+\item 
+  \emph{Titles of the movies featuring Kirsten Dunst.} 
+  
+Query: 
+  
+\begin{lstlisting}
+for $m in doc('/db/movies/movies.xml')/movies/movie
+where $m/actor/last_name = "Dunst"
+return
+    $m/title/text()
+\end{lstlisting}
+  
+Output:
+  
+\begin{lstlisting}
+Marie Antoinette
+Spider-Man
+\end{lstlisting}   
+
+\item 
+  \emph{} 
+  
+Query: 
+  
+\begin{lstlisting}
+
+\end{lstlisting}
+  
+Output:
+  
+\begin{lstlisting}
+
+\end{lstlisting}   
+
+\item 
+  \emph{} 
+  
+Query: 
+  
+\begin{lstlisting}
+
+\end{lstlisting}
+  
+Output:
+  
+\begin{lstlisting}
+
+\end{lstlisting}   
   
 \end{enumerate}
 
