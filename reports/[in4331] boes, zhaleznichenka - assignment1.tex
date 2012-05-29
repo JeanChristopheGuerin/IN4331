@@ -99,10 +99,7 @@ Spider-Man
 Query: 
   
 \begin{lstlisting}
-for $m in doc('/db/movies/movies.xml')/movies/movie
-where $m/year > 2000
-return
-    $m/title/text()  
+doc('/db/movies/movies.xml')/movies/movie[year > 2000]/title/text()
 \end{lstlisting}
   
 Output:
@@ -121,10 +118,7 @@ Spider-Man
 Query: 
   
 \begin{lstlisting}
-for $m in doc('/db/movies/movies.xml')/movies/movie
-where $m/title = "Spider-Man"
-return
-    $m/summary/text()
+doc('/db/movies/movies.xml')/movies/movie[title = "Spider-Man"]/summary/text()
 \end{lstlisting}
   
 Output:
@@ -139,10 +133,7 @@ On a school field trip, Peter Parker (Maguire) is bitten by a genetically modifi
 Query: 
   
 \begin{lstlisting}
-for $m in doc('/db/movies/movies.xml')/movies/movie
-where $m/title = "Heat"
-return
-    $m/director
+doc('/db/movies/movies.xml')/movies/movie[title = "Heat"]/director
 \end{lstlisting}
   
 Output:
@@ -161,10 +152,7 @@ Output:
 Query: 
   
 \begin{lstlisting}
-for $m in doc('/db/movies/movies.xml')/movies/movie
-where $m/actor/last_name = "Dunst"
-return
-    $m/title/text()
+doc('/db/movies/movies.xml')/movies/movie/actor[last_name = "Dunst"]/../title/text()
 \end{lstlisting}
   
 Output:
@@ -175,33 +163,49 @@ Spider-Man
 \end{lstlisting}   
 
 \item 
-  \emph{} 
+  \emph{Title of the film that immediately precedes \textbf{Marie Antoinette} in the document.} 
   
 Query: 
   
 \begin{lstlisting}
-
+doc('/db/movies/movies.xml')/movies/movie[title="Marie Antoinette"]/preceding-sibling::movie[position()=last()]/title/text()
 \end{lstlisting}
   
 Output:
   
 \begin{lstlisting}
-
+Lost in Translation
 \end{lstlisting}   
 
 \item 
-  \emph{} 
+  \emph{Get the movies whose title contains a "V".} 
   
 Query: 
   
 \begin{lstlisting}
-
+doc('/db/movies/movies.xml')/movies/movie/title/text()[fn:contains(.,"V")]
 \end{lstlisting}
   
 Output:
   
 \begin{lstlisting}
+A History of Violence
+\end{lstlisting}   
 
+\item 
+  \emph{Get the movies whose cast consists of exactly three actors.} 
+  
+Query: 
+  
+\begin{lstlisting}
+doc('/db/movies/movies.xml')/movies/movie[fn:count(actor) = 3]/title/text()
+\end{lstlisting}
+  
+Output:
+  
+\begin{lstlisting}
+Unforgiven
+Spider-Man
 \end{lstlisting}   
   
 \end{enumerate}
