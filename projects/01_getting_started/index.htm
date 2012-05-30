@@ -4,19 +4,21 @@
   <head>
     <link rel="stylesheet" type="text/css" href="./css/style.css"/>
     <link rel="shortcut icon" href="./images/movie_icon.ico"/>
+    <script type="text/javascript" src="./js/code.js"> </script>
     <title>01 - Getting Started</title>
   </head>
   <body>
     <div id="main">
     <h1 class="center">01 - Getting Started</h1>
     
-     <form id="form_movie">
+     <form id="form_movie" action="#">
 	<label form="form_movie" for="input_title">Title</label>
 	<input id="input_title" type="text" name="title"  />
 	
 	<label form="form_movie" for="select_genre">Genre</label>
 	<select id="select_genre">
-	 	<!-- Use XQuery and XLST to put all distinct genres here.
+		<option value="genre-type">Dummy</option>
+	 	<!-- Use XQuery and XLST to put all distinct genres here. -->
 	  	<!-- <option value="genre-type">Genre-type</option> -->
 	</select> 
 	
@@ -28,12 +30,15 @@
 	
 	<label form="form_movie" for="select_year">Year</label>
 	<select id="select_year">
-	 	<!-- Use XQuery and XLST to put all distinct years here.
+		<option value="year-number">Dummy</option>
+	 	<!-- Use XQuery and XLST to put all distinct years here. -->
 	  	<!-- <option value="year-number">Year-number</option> -->
 	</select> 
 	
 	<label form="form_movie" for="input_keywords">Keywords</label>
 	<input id="input_keywords" type="text" name="keywords"  />
+	
+	<input id="input_search" type="submit" value="Search" onclick="search(this.form)"/>
 	</form> 
     </div>
   </body>
