@@ -7,10 +7,30 @@ function search(form)
 	var year = document.forms["form_movie"]["select_year"].value;
 	var keywords = document.forms["form_movie"]["input_keywords"].value;
 
-	alert ("You submit: " + title + " " + genre + " " + director + " " + actor + " " + year + " " + keywords);
+	//alert ("You submit: " + title + " " + genre + " " + director + " " + actor + " " + year + " " + keywords);
+	
+	
+	//queryEXist("");
+	document.getElementById("div_result").innerHTML=queryEXist("");
+	
+	/*
+	document.getElementById("div_result").innerHTML=queryEXist(
+		'let 	$ms:=doc("movies/movies_alone.xml"),\
+	   		 $as:=doc("movies/artists_alone.xml")\
+	    							\
+		for $aid in distinct-values($ms/movies/movie/actor/@id)\
+		return   \
+		    for $m in $ms/movies/movie\
+		    where $m/actor/@id/string() = $aid\
+		    return \
+			<actor>\
+			    {$aid},\
+			    {$m/title}\
+			</actor>'
+	);
+	*/
 }
 
-// not finished
 function loadXMLDoc(dname)
 {
 	if (window.XMLHttpRequest)
@@ -22,16 +42,36 @@ function loadXMLDoc(dname)
 		xhttp=new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	
-	xhttp.open("GET",dname,false);
-	xhttp.send("");
+	xhttp.open("GET", dname, false);
+	xhttp.send();
+	
 	return xhttp.responseXML;
+}
+
+function queryEXist(query)
+{
+	if (window.XMLHttpRequest)
+	{
+		xhttp=new XMLHttpRequest();
+	}
+	else
+	{
+		xhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	xhttp.open("POST", "./php/proxy.php", false);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhttp.send("ws_path=exist/rest/db/movies&_query=/");
+
+	//return xhttp.responseXML;
+	return xhttp.responseText;
 }
 
 // not finished
 function displayResult()
-{
-	xml=loadXMLDoc("cdcatalog.xml");
+{	
 	xsl=loadXMLDoc("./xslt/transform.xsl");
+	xml=loadXMLDoc("cdcatalog.xml");
 	
 	// code for IE
 	if (window.ActiveXObject)
