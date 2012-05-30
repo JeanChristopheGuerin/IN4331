@@ -79,6 +79,15 @@ body
 	margin-right:auto;
 }
 
+h1
+{
+	text-align:center;
+	margin-top:1em;
+	margin-bottom:1em;
+	font-size:2em;
+	text-transform:capitalize;
+}
+
 #form_movie input
 {
 	display:block;
@@ -86,13 +95,21 @@ body
 
 #form_movie label
 {
-	float:left;
+	float:left
 }
 
 #form_movie input
 {
 	float:left
-	clear:both;
+	clear:right;
+}
+
+#form_movie select
+{
+	display:block;
+	min-width:10%;
+	float:left
+	clear:right;
 }
 
 .contentarea
