@@ -9,26 +9,10 @@ function search(form)
 
 	//alert ("You submit: " + title + " " + genre + " " + director + " " + actor + " " + year + " " + keywords);
 	
-	
-	//queryEXist("");
-	document.getElementById("div_result").innerHTML=queryEXist("");
-	
-	/*
-	document.getElementById("div_result").innerHTML=queryEXist(
-		'let 	$ms:=doc("movies/movies_alone.xml"),\
-	   		 $as:=doc("movies/artists_alone.xml")\
-	    							\
-		for $aid in distinct-values($ms/movies/movie/actor/@id)\
-		return   \
-		    for $m in $ms/movies/movie\
-		    where $m/actor/@id/string() = $aid\
-		    return \
-			<actor>\
-			    {$aid},\
-			    {$m/title}\
-			</actor>'
-	);
-	*/
+	var result = queryEXist("for $m in /movies/movie where year>2003 return $m");
+	transform=loadXMLDoc("./xslt/transform2movielist.xsl");
+	//document.getElementById("div_result").innerHTML=result;
+	displayResult(result, transform);
 }
 
 function loadXMLDoc(dname)
@@ -61,23 +45,19 @@ function queryEXist(query)
 	
 	xhttp.open("POST", "./php/proxy.php", false);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xhttp.send("ws_path=exist/rest/db/movies&_query=/"+query);
+	xhttp.send("ws_path=exist/rest/db/movies/movies.xml&_query="+query);
 
-	//return xhttp.responseXML;
-	return xhttp.responseText;
+	return xhttp.responseXML;
+	//return xhttp.responseText;
 }
 
-// not finished
-function displayResult()
-{	
-	xsl=loadXMLDoc("./xslt/transform.xsl");
-	xml=loadXMLDoc("cdcatalog.xml");
-	
+function displayResult(xml, xsl)
+{		
 	// code for IE
 	if (window.ActiveXObject)
 	{
 		ex=xml.transformNode(xsl);
-		document.getElementById("example").innerHTML=ex;
+		document.getElementById("div_result").innerHTML=ex;
 	}
 	// code for Mozilla, Firefox, Opera, etc.
 	else if (document.implementation && document.implementation.createDocument)
@@ -85,6 +65,6 @@ function displayResult()
 		xsltProcessor=new XSLTProcessor();
 		xsltProcessor.importStylesheet(xsl);
 		resultDocument = xsltProcessor.transformToFragment(xml,document);
-		document.getElementById("example").appendChild(resultDocument);
+		document.getElementById("div_result").appendChild(resultDocument);
 	}
 }

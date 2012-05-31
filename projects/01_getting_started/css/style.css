@@ -65,27 +65,32 @@ body
 {
 	color:black;
 	background:#4E9258;
-	background-size:cover;
-	background-repeat:no-repeat;
-	background-attachment:fixed;
+	text-align: center;
 	width:100%; 
 	height:100%;
 }
 
 #main
 {
+	display:inline-block;
+	background:#667C26;
 	width:60%;
-	margin-left:auto;
-	margin-right:auto;
+	height:100%;
 }
 
 h1
 {
+	background:#DAA520;
 	text-align:center;
 	margin-top:1em;
 	margin-bottom:1em;
 	font-size:2em;
 	text-transform:capitalize;
+}
+
+#form_movie
+{
+	background:#D2B48C;
 }
 
 #form_movie input
