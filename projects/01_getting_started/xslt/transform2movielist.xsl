@@ -3,7 +3,7 @@
 
 <xsl:template match="/">
 	<h2>Movies</h2>
-	<table >
+	<table id="table_movies">
 		<tr >
 			<th>Title</th>
 			<th>Year</th>
@@ -23,7 +23,9 @@
 
 <xsl:template match="title">
 	<td>
-		<xsl:value-of select="."/>
+		<a href="javascript:void(0)" onclick="selectMovie(this.innerHTML);">
+			<xsl:value-of select="."/>
+		</a>
 	</td>
 </xsl:template>
 
