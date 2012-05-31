@@ -3,7 +3,7 @@ Due to browser security restrictions preventing the web application from opening
 1. install webserver (appache) with PHP support
 2. install PHP CURL module
 3. create folder WEBROOT/in4331/
-4. make symlink to WEBROOT/in4331/01/ to target folder 01_getting_started
+4. make symlink WEBROOT/in4331/01/ to target folder "01_getting_started"
 
 Reference:
 http://developer.yahoo.com/javascript/howto-ajax.html
