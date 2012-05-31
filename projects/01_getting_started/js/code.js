@@ -61,7 +61,7 @@ function queryEXist(query)
 	
 	xhttp.open("POST", "./php/proxy.php", false);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xhttp.send("ws_path=exist/rest/db/movies&_query=/");
+	xhttp.send("ws_path=exist/rest/db/movies&_query=/"+query);
 
 	//return xhttp.responseXML;
 	return xhttp.responseText;
