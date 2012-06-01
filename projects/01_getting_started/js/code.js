@@ -33,7 +33,7 @@ function loadYears()
 
 function buildSearchQuery(title, genre, director, actor, year, keywords)
 {
-	var query = "for $m in /movies/movie where contains($m/title, '" + title + "') or (some $d in $m/director satisfies  contains(concat($d/first_name/text(), ' ' ,$d/last_name/text()), '" + director + "')) or (some $a in $m/actor satisfies  contains(concat($a/first_name/text(), ' ' ,$a/last_name/text()), '" + actor + "')) or (some $k in tokenize(normalize-space('" + keywords + "'), '\s+') satisfies contains($m/summary/text(), $k)) and $m/genre='" + genre + "' and $m/year='" + year + "' return $m";
+	var query = "for $m in /movies/movie where (string-length('" + title + "') > 0 and contains($m/title, '" + title + "')) or (string-length('" + director + "') > 0 and (some $d in $m/director satisfies  contains(concat($d/first_name/text(), ' ' ,$d/last_name/text()), '" + director + "'))) or (string-length('" + actor + "') > 0 and (some $a in $m/actor satisfies  contains(concat($a/first_name/text(), ' ' ,$a/last_name/text()), '" + actor + "'))) or (some $k in tokenize(normalize-space('" + keywords + "'), '\s+') satisfies contains($m/summary/text(), $k)) or $m/genre='" + genre + "' and $m/year='" + year + "' return $m";
 	return query;
 }
 
@@ -121,3 +121,4 @@ function loadXMLDoc(dname)
 // for $m in doc('/db/movies/movies.xml')/movies/movie where title="A History of Violence" return $m
 // for $g in distinct-values(doc('/db/movies/movies.xml')/movies/movie/genre) return <genre> {$g} </genre>
 // for $m in doc('/db/movies/movies.xml')/movies/movie where contains($m/title, "bla") or (some $d in $m/director satisfies  contains(concat($d/first_name/text(), " " ,$d/last_name/text()), "bar")) or (some $a in $m/actor satisfies  contains(concat($a/first_name/text(), " " ,$a/last_name/text()), "bar")) or (some $k in tokenize(normalize-space("foo bar family"), "\s+") satisfies contains($m/summary/text(), $k)) and $m/genre="Crime" and $m/year="2005" return $m
+// Query above misses check for strings of length zero.
