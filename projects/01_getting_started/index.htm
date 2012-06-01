@@ -7,7 +7,7 @@
     <script type="text/javascript" src="./js/code.js"> </script>
     <title>01 - Getting Started</title>
   </head>
-  <body>
+  <body onload="loadDynamicContent()">
     <div id="main">
     <h1 class="center">01 - Getting Started</h1>
     
@@ -17,7 +17,6 @@
 	
 	<label form="form_movie" for="select_genre">Genre</label>
 	<select id="select_genre">
-		<option value="genre-type">Dummy</option>
 	 	<!-- Use XQuery and XLST to put all distinct genres here. -->
 	  	<!-- <option value="genre-type">Genre-type</option> -->
 	</select> 
@@ -30,7 +29,6 @@
 	
 	<label form="form_movie" for="select_year">Year</label>
 	<select id="select_year">
-		<option value="year-number">Dummy</option>
 	 	<!-- Use XQuery and XLST to put all distinct years here. -->
 	  	<!-- <option value="year-number">Year-number</option> -->
 	</select> 
