@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="2.xsl" type="text/xsl"?>
+<PLAY>
+<ACTS>
+<TITLE>ACT I</TITLE>
+<TITLE>ACT II</TITLE>
+<TITLE>ACT III</TITLE>
+<TITLE>ACT IV</TITLE>
+<TITLE>ACT V</TITLE>
+</ACTS>
+<SCENES>
+<TITLE>SCENE I. Elsinore. A platform before the castle.</TITLE>
+<TITLE>SCENE II. A room of state in the castle.</TITLE>
+<TITLE>SCENE III. A room in Polonius' house.</TITLE>
+<TITLE>SCENE IV. The platform.</TITLE>
+<TITLE>SCENE V. Another part of the platform.</TITLE>
+<TITLE>SCENE I. A room in POLONIUS' house.</TITLE>
+<TITLE>SCENE II. A room in the castle.</TITLE>
+<TITLE>SCENE I. A room in the castle.</TITLE>
+<TITLE>SCENE II. A hall in the castle.</TITLE>
+<TITLE>SCENE III. A room in the castle.</TITLE>
+<TITLE>SCENE IV. The Queen's closet.</TITLE>
+<TITLE>SCENE I. A room in the castle.</TITLE>
+<TITLE>SCENE II. Another room in the castle.</TITLE>
+<TITLE>SCENE III. Another room in the castle.</TITLE>
+<TITLE>SCENE IV. A plain in Denmark.</TITLE>
+<TITLE>SCENE V. Elsinore. A room in the castle.</TITLE>
+<TITLE>SCENE VI. Another room in the castle.</TITLE>
+<TITLE>SCENE VII. Another room in the castle.</TITLE>
+<TITLE>SCENE I. A churchyard.</TITLE>
+<TITLE>SCENE II. A hall in the castle.</TITLE>
+</SCENES>
+<CHARACTERS>
+<PERSONA>CLAUDIUS, king of Denmark. </PERSONA>
+<PERSONA>HAMLET, son to the late, and nephew to the present king.</PERSONA>
+<PERSONA>POLONIUS, lord chamberlain. </PERSONA>
+<PERSONA>HORATIO, friend to Hamlet.</PERSONA>
+<PERSONA>LAERTES, son to Polonius.</PERSONA>
+<PERSONA>LUCIANUS, nephew to the king.</PERSONA>
+<PERSONA>A Gentleman</PERSONA>
+<PERSONA>A Priest. </PERSONA>
+<PERSONA>FRANCISCO, a soldier.</PERSONA>
+<PERSONA>REYNALDO, servant to Polonius.</PERSONA>
+<PERSONA>Players.</PERSONA>
+<PERSONA>Two Clowns, grave-diggers.</PERSONA>
+<PERSONA>FORTINBRAS, prince of Norway. </PERSONA>
+<PERSONA>A Captain.</PERSONA>
+<PERSONA>English Ambassadors. </PERSONA>
+<PERSONA>GERTRUDE, queen of Denmark, and mother to Hamlet. </PERSONA>
+<PERSONA>OPHELIA, daughter to Polonius.</PERSONA>
+<PERSONA>Lords, Ladies, Officers, Soldiers, Sailors, Messengers, and other Attendants.</PERSONA>
+<PERSONA>Ghost of Hamlet's Father. </PERSONA>
+</CHARACTERS>
+</PLAY>
