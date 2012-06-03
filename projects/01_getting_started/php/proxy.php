@@ -2,7 +2,22 @@
 // PHP Proxy for Web services. 
 // Responds to both HTTP GET and POST requests
 
-define ('HOSTNAME', 'http://localhost:8899/');
+//Stripping slasses from quotes
+if (get_magic_quotes_gpc()) {
+        function stripslashes_deep($value) {
+            $value = is_array($value) ?
+                     array_map('stripslashes_deep', $value) :
+                     stripslashes($value);
+            return $value;
+        }
+
+        $_POST = array_map('stripslashes_deep', $_POST);
+        $_GET = array_map('stripslashes_deep', $_GET);
+        $_COOKIE = array_map('stripslashes_deep', $_COOKIE);
+        $_REQUEST = array_map('stripslashes_deep', $_REQUEST);
+}
+
+define ('HOSTNAME', 'http://localhost:8080/');
 
 // Get the REST call path from the AJAX application
 // Is it a POST or a GET?

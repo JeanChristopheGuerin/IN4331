@@ -33,7 +33,16 @@ function loadYears()
 
 function buildSearchQuery(title, genre, director, actor, year, keywords)
 {
-	var query = "for $m in /movies/movie where (string-length('" + title + "') > 0 and contains($m/title, '" + title + "')) or (string-length('" + director + "') > 0 and (some $d in $m/director satisfies  contains(concat($d/first_name/text(), ' ' ,$d/last_name/text()), '" + director + "'))) or (string-length('" + actor + "') > 0 and (some $a in $m/actor satisfies  contains(concat($a/first_name/text(), ' ' ,$a/last_name/text()), '" + actor + "'))) or (some $k in tokenize(normalize-space('" + keywords + "'), '\s+') satisfies contains($m/summary/text(), $k)) or $m/genre='" + genre + "' and $m/year='" + year + "' return $m";
+	var query = 
+	
+   	"for $m in /movies/movie " + 
+	"where (string-length('" + title + "') > 0 and contains($m/title, '" + title + "')) " +
+	"or (string-length('" + director + "') > 0 and (some $d in $m/director satisfies  contains(concat($d/first_name/text(), ' ' ,$d/last_name/text()), '" + director + "'))) " +
+	"or (string-length('" + actor + "') > 0 and (some $a in $m/actor satisfies  contains(concat($a/first_name/text(), ' ' ,$a/last_name/text()), '" + actor + "'))) " +
+	"or (some $k in tokenize(normalize-space('" + keywords + "'), '\s+') satisfies contains($m/summary/text(), $k)) " +
+	"and $m/genre='" + genre + "' " + 
+	"and $m/year='" + year + "' " +
+	"return $m";
 	return query;
 }
 

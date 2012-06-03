@@ -3,6 +3,8 @@
 \usepackage{listings}
 \usepackage{color}
 \usepackage{courier}
+\usepackage{graphicx}
+\graphicspath{{./pictures/}}
  
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
@@ -853,6 +855,32 @@ Output:
 \section{Projects}
 
 \subsection{Getting Started}
+
+The application was built with HTML + JavaScript using eXist REST API. The queries get routed to the proxy written in PHP to avoid the security restrictions. XML to HTML data transformation is done with XSL stylesheets. You can find the screenshots of the application at figures 1-3.
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=0.9\textwidth]{01-1.png}
+\caption{Search interface.}
+\label{fig:01-1}
+\end{center}
+\end{figure}
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=0.9\textwidth]{01-2.png}
+\caption{Collapsed search results.}
+\label{fig:01-2}
+\end{center}
+\end{figure}
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=0.9\textwidth]{01-3.png}
+\caption{Expanded search results.}
+\label{fig:01-3}
+\end{center}
+\end{figure}
 
 \subsection{Shakespeare Opera Omnia}
 
