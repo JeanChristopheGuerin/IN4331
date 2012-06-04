@@ -1,28 +1,38 @@
 var collection = "db/music";
 
-//var transformPlaysListFile = "./xslt/transformPlaysList.xsl";
+var transformMovementsListFile = "./xslt/transformMovementsList.xsl";
 //var transformPlayTitleFile = "./xslt/transformPlayTitle.xsl";
 //var transformPlayPartsFile = "./xslt/transformPlayParts.xsl";
 //var transformPlayTocFile = "./xslt/transformPlayToc.xsl";
 //var transformPlaySummaryFile = "./xslt/transformPlaySummary.xsl";
 //var transformPlayRoleFile = "./xslt/transformPlayRole.xsl";
 //
-//var elementPlays = "div_plays";
-//var elementPlayTitle = "div_play_title"
-//var elementPlayContents = "div_play_contents";
+var elementMovements = "div_movements";
+var elementMovementTitle = "div_movement_title"
+var elementMovementContents = "div_movement_contents";
 
-//function loadPlays()
-//{
-//	query =
-//        "for $play in collection('/db/shakespeare/plays') " +
-//        "order by $play/PLAY/TITLE/text() " +
-//        "return $play/PLAY/TITLE";
-//
-//	var titles = queryExist(query);
-//	var transformPlaysList = loadXMLDoc(transformPlaysListFile);
-//	displayResult(titles, transformPlaysList, elementPlays);
-//
-//}
+function loadMovements()
+{
+	query =
+        "for $movement in collection('/db/music')/score-partwise " +
+         "let $movement-title := $movement/movement-title/text(), " +
+         "    $work-title := concat($movement/work/work-number, ' ', $movement/work/work-title) " +
+         "return " +
+             "<movement> " +
+                 "<title>{ " +
+                      "if (fn:string($movement-title) != '')" +
+                         "then fn:data($movement-title) " +
+                         "else $work-title " +
+                 "}</title> " +
+                 "<composer>{$movement/identification/creator[@type=\"composer\"]/text()}</composer> " +
+                 "<lyricist>{$movement/identification/creator[@type=\"lyricist\"]/text()}</lyricist> " +
+             "</movement>";
+
+	var movements = queryExist(query);
+	var transformMovementsList = loadXMLDoc(transformMovementsListFile);
+	displayResult(movements, transformMovementsList, elementMovements);
+
+}
 //
 //function showTitle(title){
 //    var query =
@@ -165,7 +175,7 @@ function queryExist(query)
 	
 	xhttp.open("POST", "./php/proxy.php", false);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xhttp.send("ws_path=exist/rest/shakespeare" + "&_query=" + query);
+	xhttp.send("ws_path=exist/rest/music" + "&_query=" + query);
 
 	return xhttp.responseXML;
 }
