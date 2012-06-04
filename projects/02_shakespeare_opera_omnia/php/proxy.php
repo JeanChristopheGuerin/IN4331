@@ -17,7 +17,8 @@ if (get_magic_quotes_gpc()) {
         $_REQUEST = array_map('stripslashes_deep', $_REQUEST);
 }
 
-define ('HOSTNAME', 'http://localhost:8080/');
+//define ('HOSTNAME', 'http://localhost:8080/');
+define ('HOSTNAME', 'http://localhost:8899/');
 
 // Get the REST call path from the AJAX application
 // Is it a POST or a GET?
