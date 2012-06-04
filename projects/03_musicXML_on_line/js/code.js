@@ -11,6 +11,7 @@ var transformMovementSummaryFile = "./xslt/transformMovementSummary.xsl";
 var elementMovements = "div_movements";
 var elementMovementTitle = "div_movement_title"
 var elementMovementContents = "div_movement_contents";
+var elementSheetMusic = "div_sheetmusic";
 
 function loadMovements()
 {
@@ -55,10 +56,37 @@ function showTitle(title){
     displayResult(play, transformMovementTitle, elementMovementTitle);
 }
 
+function showSheetMusic(title)
+{
+    var query =
+        "for $movement in collection('/db/music')/score-partwise " +
+            "let $movement-title := $movement/movement-title/text(), " +
+             "    $work-title := concat($movement/work/work-number, ' ', $movement/work/work-title) " +
+             "where $movement-title = '" + title + "' or " +
+                 "$work-title = '" + title + "' " +
+             "return " +
+                 "<score-partwise>{ " +
+                      "$movement" +
+                 "}</score-partwise> ";
+
+    var sheetMusicXMLText = queryExist(query, true);
+    
+    //console.debug(sheetMusicXMLText);
+    
+    var sheetMusicPNG = musicXML2PNG(sheetMusicXMLText);
+    
+    console.debug(sheetMusicPNG);
+    
+    document.getElementById(elementSheetMusic).innerHTML = "";
+    document.getElementById(elementSheetMusic).appendChild( sheetMusicPNG );
+    
+}
+
 function showSummary(title)
 {
 
     showTitle(title);
+    //showSheetMusic(title); // ENABLE THIS TO SEE RESULT OF PHP SCRIPT
 
     var query =
          "for $movement in collection('/db/music')/score-partwise " +
@@ -174,7 +202,7 @@ function showSummary(title)
 //    displayResult(play, transformPlayContents, elementPlayContents);
 //}
 
-function queryExist(query)
+function queryExist(query, responseText)
 {
 	// code for Mozilla, Firefox, Opera, etc.
 	if (window.XMLHttpRequest)
@@ -191,7 +219,35 @@ function queryExist(query)
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhttp.send("ws_path=exist/rest/music" + "&_query=" + query);
 
-	return xhttp.responseXML;
+	if (typeof responseText == 'undefined')
+	{
+		return xhttp.responseXML;
+	}
+	else
+	{
+		return xhttp.responseText;
+	}
+}
+
+function musicXML2PNG( xmlString )
+{
+	// code for Mozilla, Firefox, Opera, etc.
+	if (window.XMLHttpRequest)
+	{
+		xhttp=new XMLHttpRequest();
+	}
+	// code for IE
+	else
+	{
+		xhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	xhttp.open("POST", "./php/musicxml2png.php", false);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhttp.setRequestHeader("Content-length", xmlString.length);
+	xhttp.send("musicxml=" + xmlString);
+
+	return xhttp.responseText;
 }
 
 function displayResult(xml, xsl, elementID)

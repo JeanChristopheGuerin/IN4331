@@ -21,6 +21,11 @@ $fileMusicXML = tempnam(sys_get_temp_dir(), "musicxml"); 	// this creates the XM
 $fileLY = tempnam(sys_get_temp_dir(), "musicly"); 		// this creates the LY file
 $filePNG = tempnam(sys_get_temp_dir(), "musicPNG"); 		// this creates the PNG file
 
+
+//echo "Maximum post size is ".(ini_get('post_max_size'));
+
+echo $_POST['musicxml']; // Only for testing.
+
 $handleMusicXML = fopen($fileMusicXML, "w");
 fwrite($handleMusicXML, $_POST['musicxml'] );
 fclose($handleMusicXML);
@@ -32,27 +37,20 @@ exec("lilypond --png -o" + $filePNG + " " + $fileLY);
 //$PNG = file_get_contents($filePNG);				// then read in the .PNG file
 //echo $PNG;							// and the file out to the browser
 
-unlink($fileMusicXML);						// this removes the XML file
-unlink($fileLY); 						// this removes the LY file
-unlink($filePNG); 						// this removes the LY file
+echo base64_encode_image( $filePNG, 'png' );
+
+//unlink($fileMusicXML);						// this removes the XML file
+//unlink($fileLY); 						// this removes the LY file
+//unlink($filePNG); 						// this removes the LY file
 
 
-function base64_encode_image ($imagefile) 
+function base64_encode_image ($filename = null, $filetype) 
 {
-	$imgtype = array('jpg', 'gif', 'png');
-	$filename = file_exists($imagefile) ? htmlentities($imagefile) : die('Image file name does not exist');
-	$filetype = pathinfo($filename, PATHINFO_EXTENSION);
-	
-	if (in_array($filetype, $imgtype))
-	{
-    		$imgbinary = fread(fopen($filename, "r"), filesize($filename));
-	} 
-	else 
-	{
-    		die ('Invalid image type, jpg, gif, and png is only allowed');
-	}
-	
-	return 'data:image/' . $filetype . ';base64,' . base64_encode($imgbinary);
+    if ($filename) 
+    {
+        $imgbinary = fread(fopen($filename, "r"), filesize($filename));
+        return '<img src="data:image/' . $filetype . ';base64,' . base64_encode($imgbinary) . '"/>';
+    }
 }
 
 ?>
