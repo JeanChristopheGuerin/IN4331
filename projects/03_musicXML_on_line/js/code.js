@@ -1,10 +1,11 @@
 var collection = "db/music";
 
 var transformMovementsListFile = "./xslt/transformMovementsList.xsl";
-//var transformPlayTitleFile = "./xslt/transformPlayTitle.xsl";
+var transformMovementTitleFile = "./xslt/transformMovementTitle.xsl";
+var transformMovementSummaryFile = "./xslt/transformMovementSummary.xsl";
 //var transformPlayPartsFile = "./xslt/transformPlayParts.xsl";
 //var transformPlayTocFile = "./xslt/transformPlayToc.xsl";
-//var transformPlaySummaryFile = "./xslt/transformPlaySummary.xsl";
+
 //var transformPlayRoleFile = "./xslt/transformPlayRole.xsl";
 //
 var elementMovements = "div_movements";
@@ -33,19 +34,55 @@ function loadMovements()
 	displayResult(movements, transformMovementsList, elementMovements);
 
 }
-//
-//function showTitle(title){
-//    var query =
-//        "for $play in collection('/db/shakespeare/plays') " +
-//        "where $play/PLAY/TITLE/text() = '" + title + "'" +
-//        "return $play/PLAY/TITLE";
-//
-//    var play = queryExist(query);
-//    var transformPlayTitle = loadXMLDoc(transformPlayTitleFile);
-//
-//    displayResult(play, transformPlayTitle, elementPlayTitle);
-//}
-//
+
+function showTitle(title){
+    var query =
+        "for $movement in collection('/db/music')/score-partwise " +
+            "let $movement-title := $movement/movement-title/text(), " +
+             "    $work-title := concat($movement/work/work-number, ' ', $movement/work/work-title) " +
+             "where $movement-title = '" + title + "' or " +
+                 "$work-title = '" + title + "' " +
+             "return " +
+                 "<title>{ " +
+                      "if (fn:string($movement-title) != '')" +
+                         "then fn:data($movement-title) " +
+                         "else $work-title " +
+                 "}</title> ";
+
+    var play = queryExist(query);
+    var transformMovementTitle = loadXMLDoc(transformMovementTitleFile);
+
+    displayResult(play, transformMovementTitle, elementMovementTitle);
+}
+
+function showSummary(title)
+{
+
+    showTitle(title);
+
+    var query =
+         "for $movement in collection('/db/music')/score-partwise " +
+         "let $movement-title := $movement/movement-title/text(), " +
+         "    $work-title := concat($movement/work/work-number, ' ', $movement/work/work-title) " +
+         "where $movement-title = '" + title + "' or " +
+                 "$work-title = '" + title + "' " +
+         "return " +
+             "<movement> " +
+                 "<title>{ " +
+                      "if (fn:string($movement-title) != '')" +
+                         "then fn:data($movement-title) " +
+                         "else $work-title " +
+                 "}</title> " +
+                 "<composer>{$movement/identification/creator[@type=\"composer\"]/text()}</composer> " +
+                 "<lyricist>{$movement/identification/creator[@type=\"lyricist\"]/text()}</lyricist> " +
+             "</movement>";
+
+    var movement = queryExist(query);
+    var transformMovementContents = loadXMLDoc(transformMovementSummaryFile);
+
+    displayResult(movement, transformMovementContents, elementMovementContents);
+}
+
 //function showParts(title)
 //{
 //    showTitle(title);
@@ -108,29 +145,6 @@ function loadMovements()
 //    displayResult(play, transformPlayContents, elementPlayContents);
 //}
 //
-//function showSummary(title)
-//{
-//
-//    showTitle(title);
-//
-//    var query =
-//        "for $play in collection('/db/shakespeare/plays') " +
-//        "where $play/PLAY/TITLE/text() = '" + title + "' " +
-//        "return " +
-//            "<SUMMARY> " +
-//            "<AUTHOR>W. Shakespeare</AUTHOR> " +
-//            "{$play/PLAY/TITLE} " +
-//            "<PERSONAE> { " +
-//                "for $prs in $play/PLAY/PERSONAE/PERSONA " +
-//                "return $prs } " +
-//            "</PERSONAE> " +
-//            "</SUMMARY>";
-//
-//    var play = queryExist(query);
-//    var transformPlayContents = loadXMLDoc(transformPlaySummaryFile);
-//
-//    displayResult(play, transformPlayContents, elementPlayContents);
-//}
 //
 //function searchParts(form){
 //    var act = document.forms["form_parts"]["select_act"].value;
