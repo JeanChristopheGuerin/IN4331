@@ -4,6 +4,7 @@ var transformPlaysListFile = "./xslt/transformPlaysList.xsl";
 var transformPlayTitleFile = "./xslt/transformPlayTitle.xsl";
 var transformPlayPartsFile = "./xslt/transformPlayParts.xsl";
 var transformPlayTocFile = "./xslt/transformPlayToc.xsl";
+var transformPlaySummaryFile = "./xslt/transformPlaySummary.xsl";
 
 var elementPlays = "div_plays";
 var elementPlayTitle = "div_play_title"
@@ -85,11 +86,26 @@ function showToc(title)
 
 function showSummary(title)
 {
-    var query = "for $play in /movies/movie where title='" + title + "' return $m";
-    var play = queryExist(file, query);
-    var transformPlay = loadXMLDoc(transformPlayFile);
 
-    displayResult(play, transformPlay, elementPlayContents);
+    showTitle(title);
+
+    var query =
+        "for $play in collection('/db/shakespeare/plays') " +
+        "where $play/PLAY/TITLE/text() = '" + title + "' " +
+        "return " +
+            "<SUMMARY> " +
+            "<AUTHOR>W. Shakespeare</AUTHOR> " +
+            "{$play/PLAY/TITLE} " +
+            "<PERSONAE> { " +
+                "for $prs in $play/PLAY/PERSONAE/PERSONA " +
+                "return $prs } " +
+            "</PERSONAE> " +
+            "</SUMMARY>";
+
+    var play = queryExist(query);
+    var transformPlayContents = loadXMLDoc(transformPlaySummaryFile);
+
+    displayResult(play, transformPlayContents, elementPlayContents);
 }
 
 function queryExist(query)

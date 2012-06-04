@@ -61,7 +61,16 @@
       <file leaf-file-name="code.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/code.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="36" selection-start="2134" selection-end="2134" vertical-scroll-proportion="0.0">
+            <state line="105" column="29" selection-start="3488" selection-end="3488" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="transformPlaySummary.xsl" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/xslt/transformPlaySummary.xsl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="21" selection-start="458" selection-end="458" vertical-scroll-proportion="0.23127754">
               <folding />
             </state>
           </provider>
@@ -70,25 +79,16 @@
       <file leaf-file-name="transformPlayToc.xsl" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/xslt/transformPlayToc.xsl">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="0" selection-start="324" selection-end="324" vertical-scroll-proportion="0.0">
+            <state line="4" column="7" selection-start="153" selection-end="153" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="69" column="17" selection-start="926" selection-end="926" vertical-scroll-proportion="0.53744495">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="transformPlayParts.xsl" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/xslt/transformPlayParts.xsl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="73" selection-start="648" selection-end="709" vertical-scroll-proportion="0.0">
+            <state line="69" column="17" selection-start="926" selection-end="926" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -141,9 +141,10 @@
         <option value="$PROJECT_DIR$/testdata/3.xml" />
         <option value="$PROJECT_DIR$/xslt/transformPlayParts.xsl" />
         <option value="$PROJECT_DIR$/xslt/transformPlaysList.xsl" />
+        <option value="$PROJECT_DIR$/css/style.css" />
         <option value="$PROJECT_DIR$/js/code.js" />
         <option value="$PROJECT_DIR$/xslt/transformPlayToc.xsl" />
-        <option value="$PROJECT_DIR$/css/style.css" />
+        <option value="$PROJECT_DIR$/xslt/transformPlaySummary.xsl" />
       </list>
     </option>
   </component>
@@ -507,13 +508,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/xslt/transformPlaysList.xsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="49" selection-start="654" selection-end="654" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.htm">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="30" selection-start="384" selection-end="384" vertical-scroll-proportion="-5.625">
@@ -528,30 +522,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/xslt/transformPlayParts.xsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="73" selection-start="648" selection-end="709" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/code.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="36" selection-start="2134" selection-end="2134" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/xslt/transformPlayToc.xsl">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="324" selection-end="324" vertical-scroll-proportion="0.0">
+        <state line="4" column="7" selection-start="153" selection-end="153" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xslt/transformPlayParts.xsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="73" selection-start="648" selection-end="709" vertical-scroll-proportion="0.16519824">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="17" selection-start="926" selection-end="926" vertical-scroll-proportion="0.53744495">
+        <state line="69" column="17" selection-start="926" selection-end="926" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xslt/transformPlaysList.xsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="49" selection-start="654" selection-end="654" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/code.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="105" column="29" selection-start="3488" selection-end="3488" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xslt/transformPlaySummary.xsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="21" selection-start="458" selection-end="458" vertical-scroll-proportion="0.23127754">
           <folding />
         </state>
       </provider>

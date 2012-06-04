@@ -2,7 +2,7 @@
 <xsl:transform version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <xsl:template match="/">
-	<h4><center>Table of Contents</center></h4>
+	<h3><center>Table of Contents</center></h3>
     <xsl:apply-templates/>
 </xsl:template>
 
