@@ -61,43 +61,16 @@
       <file leaf-file-name="code.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/code.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="105" column="29" selection-start="3488" selection-end="3488" vertical-scroll-proportion="0.0">
+            <state line="141" column="8" selection-start="4722" selection-end="4722" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="transformPlaySummary.xsl" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/xslt/transformPlaySummary.xsl">
+      <file leaf-file-name="transformPlayRole.xsl" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/xslt/transformPlayRole.xsl">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="21" selection-start="458" selection-end="458" vertical-scroll-proportion="0.23127754">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="transformPlayToc.xsl" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/xslt/transformPlayToc.xsl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="7" selection-start="153" selection-end="153" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/style.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="69" column="17" selection-start="926" selection-end="926" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="transformPlayTitle.xsl" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/xslt/transformPlayTitle.xsl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="4" selection-start="213" selection-end="306" vertical-scroll-proportion="0.0">
+            <state line="16" column="20" selection-start="459" selection-end="459" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -112,10 +85,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="transformPlaysList.xsl" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="transformPlayParts.xsl" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/xslt/transformPlayParts.xsl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="0" selection-start="1202" selection-end="1202" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="transformPlaysList.xsl" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/xslt/transformPlaysList.xsl">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="49" selection-start="654" selection-end="654" vertical-scroll-proportion="0.0">
+            <state line="12" column="70" selection-start="484" selection-end="484" vertical-scroll-proportion="0.19823788">
               <folding />
             </state>
           </provider>
@@ -139,12 +121,13 @@
         <option value="$PROJECT_DIR$/index.htm" />
         <option value="$PROJECT_DIR$/xslt/transformPlayTitle.xsl" />
         <option value="$PROJECT_DIR$/testdata/3.xml" />
-        <option value="$PROJECT_DIR$/xslt/transformPlayParts.xsl" />
-        <option value="$PROJECT_DIR$/xslt/transformPlaysList.xsl" />
         <option value="$PROJECT_DIR$/css/style.css" />
-        <option value="$PROJECT_DIR$/js/code.js" />
         <option value="$PROJECT_DIR$/xslt/transformPlayToc.xsl" />
         <option value="$PROJECT_DIR$/xslt/transformPlaySummary.xsl" />
+        <option value="$PROJECT_DIR$/xslt/transformPlayParts.xsl" />
+        <option value="$PROJECT_DIR$/js/code.js" />
+        <option value="$PROJECT_DIR$/xslt/transformPlayRole.xsl" />
+        <option value="$PROJECT_DIR$/xslt/transformPlaysList.xsl" />
       </list>
     </option>
   </component>
@@ -380,6 +363,17 @@
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
+    <configuration default="true" type="JavascriptDebugSession" factoryName="Local">
+      <JSDebuggerConfigurationSettings>
+        <option name="engineId" />
+        <option name="fileUrl" />
+      </JSDebuggerConfigurationSettings>
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Maven.BeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -430,15 +424,15 @@
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24946581" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -508,6 +502,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/xslt/transformPlayToc.xsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="7" selection-start="153" selection-end="153" vertical-scroll-proportion="0.066079296">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="17" selection-start="926" selection-end="926" vertical-scroll-proportion="0.53744495">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xslt/transformPlayTitle.xsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="4" selection-start="213" selection-end="306" vertical-scroll-proportion="0.11563877">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xslt/transformPlaySummary.xsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="0" selection-start="485" selection-end="485" vertical-scroll-proportion="0.280837">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/code.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="141" column="8" selection-start="4722" selection-end="4722" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xslt/transformPlayRole.xsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="20" selection-start="459" selection-end="459" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.htm">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="30" selection-start="384" selection-end="384" vertical-scroll-proportion="-5.625">
@@ -515,51 +551,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/xslt/transformPlayTitle.xsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="4" selection-start="213" selection-end="306" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xslt/transformPlayToc.xsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="7" selection-start="153" selection-end="153" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/xslt/transformPlayParts.xsl">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="73" selection-start="648" selection-end="709" vertical-scroll-proportion="0.16519824">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="17" selection-start="926" selection-end="926" vertical-scroll-proportion="0.0">
+        <state line="28" column="0" selection-start="1202" selection-end="1202" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/xslt/transformPlaysList.xsl">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="49" selection-start="654" selection-end="654" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/code.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="105" column="29" selection-start="3488" selection-end="3488" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xslt/transformPlaySummary.xsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="21" selection-start="458" selection-end="458" vertical-scroll-proportion="0.23127754">
+        <state line="12" column="70" selection-start="484" selection-end="484" vertical-scroll-proportion="0.19823788">
           <folding />
         </state>
       </provider>
