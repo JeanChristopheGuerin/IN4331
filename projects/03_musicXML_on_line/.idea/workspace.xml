@@ -2,11 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="84052d3e-2b97-439e-aee5-783bd69c66f5" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/02_shakespeare_opera_omnia.iml" afterPath="$PROJECT_DIR$/03_musicXML_on_line.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../02_shakespeare_opera_omnia/php/proxy.php" afterPath="$PROJECT_DIR$/../02_shakespeare_opera_omnia/php/proxy.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02_shakespeare_opera_omnia.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/oxygenProject.xpr" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/testdata/1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/testdata/1.xsl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/testdata/2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/testdata/2.xsl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/testdata/3.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.htm" afterPath="$PROJECT_DIR$/index.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/code.js" afterPath="$PROJECT_DIR$/js/code.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/php/proxy.php" afterPath="$PROJECT_DIR$/php/proxy.php" />
     </list>
     <ignored path="02_shakespeare_opera_omnia.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -64,10 +70,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="code.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="code.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/code.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="141" column="8" selection-start="4722" selection-end="4722" vertical-scroll-proportion="0.0">
+            <state line="208" column="0" selection-start="6607" selection-end="6607" vertical-scroll-proportion="0.96575344">
               <folding />
             </state>
           </provider>
@@ -85,25 +91,7 @@
       <file leaf-file-name="index.htm" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.htm">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="30" selection-start="384" selection-end="384" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="transformPlayParts.xsl" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/xslt/transformPlayParts.xsl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="0" selection-start="1202" selection-end="1202" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="transformPlaysList.xsl" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/xslt/transformPlaysList.xsl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="159" selection-start="923" selection-end="923" vertical-scroll-proportion="0.35958904">
+            <state line="11" column="44" selection-start="438" selection-end="438" vertical-scroll-proportion="-6.875">
               <folding />
             </state>
           </provider>
@@ -123,16 +111,17 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/index.htm" />
         <option value="$PROJECT_DIR$/xslt/transformPlayTitle.xsl" />
         <option value="$PROJECT_DIR$/testdata/3.xml" />
         <option value="$PROJECT_DIR$/css/style.css" />
         <option value="$PROJECT_DIR$/xslt/transformPlayToc.xsl" />
         <option value="$PROJECT_DIR$/xslt/transformPlaySummary.xsl" />
         <option value="$PROJECT_DIR$/xslt/transformPlayParts.xsl" />
-        <option value="$PROJECT_DIR$/js/code.js" />
         <option value="$PROJECT_DIR$/xslt/transformPlayRole.xsl" />
         <option value="$PROJECT_DIR$/xslt/transformPlaysList.xsl" />
+        <option value="$PROJECT_DIR$/index.htm" />
+        <option value="$PROJECT_DIR$/php/proxy.php" />
+        <option value="$PROJECT_DIR$/js/code.js" />
       </list>
     </option>
   </component>
@@ -184,6 +173,34 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="03_musicXML_on_line" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="02_shakespeare_opera_omnia" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="03_musicXML_on_line" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xslt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="02_shakespeare_opera_omnia" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="03_musicXML_on_line" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="php" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -395,6 +412,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32964602" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
@@ -404,12 +422,11 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17650215" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17650215" sideWeight="0.670354" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -469,11 +486,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/testdata/3.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="24" selection-start="415" selection-end="415" vertical-scroll-proportion="0.18171807" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/xslt/transformPlayToc.xsl">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="7" selection-start="153" selection-end="153" vertical-scroll-proportion="0.066079296" />
@@ -494,29 +506,42 @@
         <state line="17" column="0" selection-start="485" selection-end="485" vertical-scroll-proportion="0.280837" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/code.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="141" column="8" selection-start="4722" selection-end="4722" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/xslt/transformPlayRole.xsl">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="20" selection-start="459" selection-end="459" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.htm">
+    <entry file="file://$PROJECT_DIR$/xslt/transformPlaysList.xsl">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="30" selection-start="384" selection-end="384" vertical-scroll-proportion="0.0" />
+        <state line="21" column="159" selection-start="923" selection-end="923" vertical-scroll-proportion="0.35958904" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/xslt/transformPlayParts.xsl">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="0" selection-start="1202" selection-end="1202" vertical-scroll-proportion="0.0" />
+        <state line="28" column="0" selection-start="1202" selection-end="1202" vertical-scroll-proportion="0.34931508">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/xslt/transformPlaysList.xsl">
+    <entry file="file://$PROJECT_DIR$/php/proxy.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="159" selection-start="923" selection-end="923" vertical-scroll-proportion="0.35958904" />
+        <state line="19" column="42" selection-start="657" selection-end="657" vertical-scroll-proportion="0.32534248">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="44" selection-start="438" selection-end="438" vertical-scroll-proportion="-6.875">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/code.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="208" column="0" selection-start="6607" selection-end="6607" vertical-scroll-proportion="0.96575344">
+          <folding />
+        </state>
       </provider>
     </entry>
   </component>
