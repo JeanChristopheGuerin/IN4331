@@ -5,7 +5,7 @@
         <xsl:apply-templates/>
     </xsl:template>
     
-    <xsl:template match="TITLE">
+    <xsl:template match="title">
         <h2><xsl:value-of select="." /></h2>
     </xsl:template>
 

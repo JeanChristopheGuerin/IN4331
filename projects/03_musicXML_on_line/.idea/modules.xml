@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/02_shakespeare_opera_omnia.iml" filepath="$PROJECT_DIR$/02_shakespeare_opera_omnia.iml" />
+      <module fileurl="file://$PROJECT_DIR$/03_musicXML_on_line.iml" filepath="$PROJECT_DIR$/03_musicXML_on_line.iml" />
     </modules>
   </component>
 </project>

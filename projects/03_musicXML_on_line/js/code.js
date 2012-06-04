@@ -1,101 +1,58 @@
-var collection = "db/shakespeare/plays";
+var collection = "db/music";
 
-var transformPlaysListFile = "./xslt/transformPlaysList.xsl";
-var transformPlayTitleFile = "./xslt/transformPlayTitle.xsl";
-var transformPlayPartsFile = "./xslt/transformPlayParts.xsl";
-var transformPlayTocFile = "./xslt/transformPlayToc.xsl";
-var transformPlaySummaryFile = "./xslt/transformPlaySummary.xsl";
-var transformPlayRoleFile = "./xslt/transformPlayRole.xsl";
+var transformMovementsListFile = "./xslt/transformMovementsList.xsl";
+var transformMovementTitleFile = "./xslt/transformMovementTitle.xsl";
+var transformMovementSummaryFile = "./xslt/transformMovementSummary.xsl";
+//var transformPlayPartsFile = "./xslt/transformPlayParts.xsl";
+//var transformPlayTocFile = "./xslt/transformPlayToc.xsl";
 
-var elementPlays = "div_plays";
-var elementPlayTitle = "div_play_title"
-var elementPlayContents = "div_play_contents";
+//var transformPlayRoleFile = "./xslt/transformPlayRole.xsl";
+//
+var elementMovements = "div_movements";
+var elementMovementTitle = "div_movement_title"
+var elementMovementContents = "div_movement_contents";
 
-function loadPlays()
+function loadMovements()
 {
 	query =
-        "for $play in collection('/db/shakespeare/plays') " +
-        "order by $play/PLAY/TITLE/text() " +
-        "return $play/PLAY/TITLE";
-		
-	var titles = queryExist(query);
-	var transformPlaysList = loadXMLDoc(transformPlaysListFile);
-	displayResult(titles, transformPlaysList, elementPlays);
-	
+        "for $movement in collection('/db/music')/score-partwise " +
+         "let $movement-title := $movement/movement-title/text(), " +
+         "    $work-title := concat($movement/work/work-number, ' ', $movement/work/work-title) " +
+         "return " +
+             "<movement> " +
+                 "<title>{ " +
+                      "if (fn:string($movement-title) != '')" +
+                         "then fn:data($movement-title) " +
+                         "else $work-title " +
+                 "}</title> " +
+                 "<composer>{$movement/identification/creator[@type=\"composer\"]/text()}</composer> " +
+                 "<lyricist>{$movement/identification/creator[@type=\"lyricist\"]/text()}</lyricist> " +
+             "</movement>";
+
+	var movements = queryExist(query);
+	var transformMovementsList = loadXMLDoc(transformMovementsListFile);
+	displayResult(movements, transformMovementsList, elementMovements);
+
 }
 
 function showTitle(title){
     var query =
-        "for $play in collection('/db/shakespeare/plays') " +
-        "where $play/PLAY/TITLE/text() = '" + title + "'" +
-        "return $play/PLAY/TITLE";
+        "for $movement in collection('/db/music')/score-partwise " +
+            "let $movement-title := $movement/movement-title/text(), " +
+             "    $work-title := concat($movement/work/work-number, ' ', $movement/work/work-title) " +
+             "where $movement-title = '" + title + "' or " +
+                 "$work-title = '" + title + "' " +
+             "return " +
+                 "<title>{ " +
+                      "if (fn:string($movement-title) != '')" +
+                         "then fn:data($movement-title) " +
+                         "else $work-title " +
+                 "}</title> ";
 
     var play = queryExist(query);
-    var transformPlayTitle = loadXMLDoc(transformPlayTitleFile);
+    var transformMovementTitle = loadXMLDoc(transformMovementTitleFile);
 
-    displayResult(play, transformPlayTitle, elementPlayTitle);
-}
-
-function showParts(title)
-{
-    showTitle(title);
-
-    var query =
-        "for $play in collection('/db/shakespeare/plays') " +
-        "where $play/PLAY/TITLE/text() = '"  + title + "' " +
-        "return <PLAY> " +
-        "<ACTS>{ " +
-            "for $act in $play/PLAY/ACT/TITLE " +
-            "order by $act " +
-            " return <ACT>{$act/text()}</ACT> " +
-        "}</ACTS> " +
-        "<SCENES>{ " +
-            "for $scene in $play/PLAY/ACT/SCENE/TITLE " +
-            "order by $scene " +
-            "return <SCENE>{$scene/text()}</SCENE> " +
-            "}</SCENES> " +
-            "<CHARACTERS>{ " +
-                "for $persona in distinct-values($play/PLAY/ACT/SCENE/SPEECH/SPEAKER) " +
-                "order by $persona " +
-                "return <CHARACTER>{$persona}</CHARACTER> " +
-            "}</CHARACTERS> " +
-        "</PLAY>";
-
-    var play = queryExist(query);
-    var transformPlayContents = loadXMLDoc(transformPlayPartsFile);
-
-    displayResult(play, transformPlayContents, elementPlayContents);
-}
-
-function showToc(title)
-{
-    showTitle(title);
-
-    var query =
-        "for $play in collection('/db/shakespeare/plays') " +
-        "where $play/PLAY/TITLE/text() = '" + title + "' " +
-        "return " +
-            "<ToC>{ " +
-                "for $act in $play/PLAY/ACT " +
-                "return " +
-                    "<ACT> " +
-                        "{$act/TITLE} " +
-                            "{for $scene in $act/SCENE " +
-                            "return " +
-                                "<SCENE> " +
-                                    "{$scene/TITLE} " +
-                                    "{for $actor in distinct-values($scene/SPEECH/SPEAKER/text()) " +
-                                    "order by $actor " +
-                                    "return <ACTOR>{$actor}</ACTOR> } " +
-                                "</SCENE>} " +
-                    "</ACT> } " +
-            "</ToC> ";
-
-
-    var play = queryExist(query);
-    var transformPlayContents = loadXMLDoc(transformPlayTocFile);
-
-    displayResult(play, transformPlayContents, elementPlayContents);
+    displayResult(play, transformMovementTitle, elementMovementTitle);
 }
 
 function showSummary(title)
@@ -104,51 +61,118 @@ function showSummary(title)
     showTitle(title);
 
     var query =
-        "for $play in collection('/db/shakespeare/plays') " +
-        "where $play/PLAY/TITLE/text() = '" + title + "' " +
-        "return " +
-            "<SUMMARY> " +
-            "<AUTHOR>W. Shakespeare</AUTHOR> " +
-            "{$play/PLAY/TITLE} " +
-            "<PERSONAE> { " +
-                "for $prs in $play/PLAY/PERSONAE/PERSONA " +
-                "return $prs } " +
-            "</PERSONAE> " +
-            "</SUMMARY>";
+         "for $movement in collection('/db/music')/score-partwise " +
+         "let $movement-title := $movement/movement-title/text(), " +
+         "    $work-title := concat($movement/work/work-number, ' ', $movement/work/work-title) " +
+         "where $movement-title = '" + title + "' or " +
+                 "$work-title = '" + title + "' " +
+         "return " +
+             "<movement> " +
+                 "<title>{ " +
+                      "if (fn:string($movement-title) != '')" +
+                         "then fn:data($movement-title) " +
+                         "else $work-title " +
+                 "}</title> " +
+                 "<composer>{$movement/identification/creator[@type=\"composer\"]/text()}</composer> " +
+                 "<lyricist>{$movement/identification/creator[@type=\"lyricist\"]/text()}</lyricist> " +
+             "</movement>";
 
-    var play = queryExist(query);
-    var transformPlayContents = loadXMLDoc(transformPlaySummaryFile);
+    var movement = queryExist(query);
+    var transformMovementContents = loadXMLDoc(transformMovementSummaryFile);
 
-    displayResult(play, transformPlayContents, elementPlayContents);
+    displayResult(movement, transformMovementContents, elementMovementContents);
 }
 
-function searchParts(form){
-    var act = document.forms["form_parts"]["select_act"].value;
-    var scene = document.forms["form_parts"]["select_scene"].value;
-    var persona = document.forms["form_parts"]["select_persona"].value;
-
-    var query =
-
-        "for $play in collection('/db/shakespeare/plays') " +
-        "let $act := $play/PLAY/ACT, " +
-        "$scene := $act/SCENE " +
-        "where $act/TITLE/text() = '" + act + "' " +
-        "and $scene/TITLE/text() = '" + scene + "' " +
-        "return <ROLE> " +
-        "<ACT>" + act + "</ACT> " +
-        "<SCENE>" + scene + "</SCENE> " +
-        "<SPEAKER>" + persona + "</SPEAKER> " +
-        "{ " +
-        "for $speech in $scene/SPEECH " +
-        "where $speech/SPEAKER/text() = '" + persona + "' " +
-        "return $speech/LINE " +
-        "}</ROLE>";
-
-    var play = queryExist(query);
-    var transformPlayContents = loadXMLDoc(transformPlayRoleFile);
-
-    displayResult(play, transformPlayContents, elementPlayContents);
-}
+//function showParts(title)
+//{
+//    showTitle(title);
+//
+//    var query =
+//        "for $play in collection('/db/shakespeare/plays') " +
+//        "where $play/PLAY/TITLE/text() = '"  + title + "' " +
+//        "return <PLAY> " +
+//        "<ACTS>{ " +
+//            "for $act in $play/PLAY/ACT/TITLE " +
+//            "order by $act " +
+//            " return <ACT>{$act/text()}</ACT> " +
+//        "}</ACTS> " +
+//        "<SCENES>{ " +
+//            "for $scene in $play/PLAY/ACT/SCENE/TITLE " +
+//            "order by $scene " +
+//            "return <SCENE>{$scene/text()}</SCENE> " +
+//            "}</SCENES> " +
+//            "<CHARACTERS>{ " +
+//                "for $persona in distinct-values($play/PLAY/ACT/SCENE/SPEECH/SPEAKER) " +
+//                "order by $persona " +
+//                "return <CHARACTER>{$persona}</CHARACTER> " +
+//            "}</CHARACTERS> " +
+//        "</PLAY>";
+//
+//    var play = queryExist(query);
+//    var transformPlayContents = loadXMLDoc(transformPlayPartsFile);
+//
+//    displayResult(play, transformPlayContents, elementPlayContents);
+//}
+//
+//function showToc(title)
+//{
+//    showTitle(title);
+//
+//    var query =
+//        "for $play in collection('/db/shakespeare/plays') " +
+//        "where $play/PLAY/TITLE/text() = '" + title + "' " +
+//        "return " +
+//            "<ToC>{ " +
+//                "for $act in $play/PLAY/ACT " +
+//                "return " +
+//                    "<ACT> " +
+//                        "{$act/TITLE} " +
+//                            "{for $scene in $act/SCENE " +
+//                            "return " +
+//                                "<SCENE> " +
+//                                    "{$scene/TITLE} " +
+//                                    "{for $actor in distinct-values($scene/SPEECH/SPEAKER/text()) " +
+//                                    "order by $actor " +
+//                                    "return <ACTOR>{$actor}</ACTOR> } " +
+//                                "</SCENE>} " +
+//                    "</ACT> } " +
+//            "</ToC> ";
+//
+//
+//    var play = queryExist(query);
+//    var transformPlayContents = loadXMLDoc(transformPlayTocFile);
+//
+//    displayResult(play, transformPlayContents, elementPlayContents);
+//}
+//
+//
+//function searchParts(form){
+//    var act = document.forms["form_parts"]["select_act"].value;
+//    var scene = document.forms["form_parts"]["select_scene"].value;
+//    var persona = document.forms["form_parts"]["select_persona"].value;
+//
+//    var query =
+//
+//        "for $play in collection('/db/shakespeare/plays') " +
+//        "let $act := $play/PLAY/ACT, " +
+//        "$scene := $act/SCENE " +
+//        "where $act/TITLE/text() = '" + act + "' " +
+//        "and $scene/TITLE/text() = '" + scene + "' " +
+//        "return <ROLE> " +
+//        "<ACT>" + act + "</ACT> " +
+//        "<SCENE>" + scene + "</SCENE> " +
+//        "<SPEAKER>" + persona + "</SPEAKER> " +
+//        "{ " +
+//        "for $speech in $scene/SPEECH " +
+//        "where $speech/SPEAKER/text() = '" + persona + "' " +
+//        "return $speech/LINE " +
+//        "}</ROLE>";
+//
+//    var play = queryExist(query);
+//    var transformPlayContents = loadXMLDoc(transformPlayRoleFile);
+//
+//    displayResult(play, transformPlayContents, elementPlayContents);
+//}
 
 function queryExist(query)
 {
@@ -165,7 +189,7 @@ function queryExist(query)
 	
 	xhttp.open("POST", "./php/proxy.php", false);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xhttp.send("ws_path=exist/rest/shakespeare" + "&_query=" + query);
+	xhttp.send("ws_path=exist/rest/music" + "&_query=" + query);
 
 	return xhttp.responseXML;
 }
