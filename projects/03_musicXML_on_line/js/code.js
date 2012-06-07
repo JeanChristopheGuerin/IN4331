@@ -69,7 +69,7 @@ function showSheetMusic(title)
     var sheetMusicXMLText = queryExist(query, true);    
     var sheetMusicPDF = musicXML2PDF(sheetMusicXMLText);
     
-    console.debug(sheetMusicPDF);
+    //console.debug(sheetMusicPDF);
     
     window.open(sheetMusicPDF, "_blank");
     //document.getElementById(elementSheetMusic).innerHTML = "";
