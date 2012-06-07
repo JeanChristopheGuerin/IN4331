@@ -64,21 +64,16 @@ function showSheetMusic(title)
              "    $work-title := concat($movement/work/work-number, ' ', $movement/work/work-title) " +
              "where $movement-title = '" + title + "' or " +
                  "$work-title = '" + title + "' " +
-             "return " +
-                 "<score-partwise>{ " +
-                      "$movement" +
-                 "}</score-partwise> ";
+             "return $movement";
 
-    var sheetMusicXMLText = queryExist(query, true);
+    var sheetMusicXMLText = queryExist(query, true);    
+    var sheetMusicPDF = musicXML2PDF(sheetMusicXMLText);
     
-    //console.debug(sheetMusicXMLText);
+    console.debug(sheetMusicPDF);
     
-    var sheetMusicPNG = musicXML2PNG(sheetMusicXMLText);
-    
-    console.debug(sheetMusicPNG);
-    
-    document.getElementById(elementSheetMusic).innerHTML = "";
-    document.getElementById(elementSheetMusic).appendChild( sheetMusicPNG );
+    window.open(sheetMusicPDF, "_blank");
+    //document.getElementById(elementSheetMusic).innerHTML = "";
+    //document.getElementById(elementSheetMusic).appendChild( sheetMusicPDF );
     
 }
 
@@ -86,7 +81,7 @@ function showSummary(title)
 {
 
     showTitle(title);
-    //showSheetMusic(title); // ENABLE THIS TO SEE RESULT OF PHP SCRIPT
+    showSheetMusic(title); // ENABLE THIS TO SEE RESULT OF PHP SCRIPT
 
     var query =
          "for $movement in collection('/db/music')/score-partwise " +
@@ -217,7 +212,7 @@ function queryExist(query, responseText)
 	
 	xhttp.open("POST", "./php/proxy.php", false);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xhttp.send("ws_path=exist/rest/music" + "&_query=" + query);
+	xhttp.send("ws_path=exist/rest/music" + "&_wrap=no&_query=" + query);
 
 	if (typeof responseText == 'undefined')
 	{
@@ -229,7 +224,7 @@ function queryExist(query, responseText)
 	}
 }
 
-function musicXML2PNG( xmlString )
+function musicXML2PDF( xmlString )
 {
 	// code for Mozilla, Firefox, Opera, etc.
 	if (window.XMLHttpRequest)
@@ -242,10 +237,12 @@ function musicXML2PNG( xmlString )
 		xhttp=new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	
-	xhttp.open("POST", "./php/musicxml2png.php", false);
+	//console.log(xmlString);
+	
+	xhttp.open("POST", "./php/musicxml2pdf.php", false);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhttp.setRequestHeader("Content-length", xmlString.length);
-	xhttp.send("musicxml=" + xmlString);
+	xhttp.send("musicxml=" + encodeURIComponent(xmlString));
 
 	return xhttp.responseText;
 }
