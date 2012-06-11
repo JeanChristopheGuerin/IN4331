@@ -8,4 +8,4 @@ Due to browser security restrictions preventing the web application from opening
 Reference:
 http://developer.yahoo.com/javascript/howto-ajax.html
 
-Also, you have to make sure that your eXist server works at port 8080. Otherwise, fix the port value at proxy.php to make proxying work.
+Also, you have to make sure that your eXist server works at port 8899. Otherwise, fix the port value at proxy.php to make proxying work.
