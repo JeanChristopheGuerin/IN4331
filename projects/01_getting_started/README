@@ -6,6 +6,6 @@ Due to browser security restrictions preventing the web application from opening
 2. Install PHP CURL module.
 3. Create folder WEBROOT/in4331/
 4. Make symlink WEBROOT/in4331/01/ to target folder "01_getting_started".
-5. Install eXist and start it, make sure that your eXist server works at port 8080. Otherwise, fix the port value at proxy.php to make proxying work.
+5. Install eXist and start it, make sure that your eXist server works at port 8899. Otherwise, fix the port value at proxy.php to make proxying work.
 6. Create a collection 'movies' and upload the files from datasets/movies there.
 7. Start Apache and go to http://in4331/01/index.htm in your browser.
