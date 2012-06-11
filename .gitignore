@@ -5,3 +5,6 @@ TSWLatexianTemp*
 *.blg
 *.bbl
 reports/.jle/
+**/.idea/
+**/target/
+*.iml
