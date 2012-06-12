@@ -56,10 +56,10 @@ public class MoviesJob {
         Path outputPath = new Path(output);
         FileOutputFormat.setOutputPath(job, outputPath);
 
-//        MultipleOutputs.addNamedOutput(job, Constants.OUTPUT_DIRECTOR,
-//                TextOutputFormat.class, NullWritable.class, Text.class);
-//        MultipleOutputs.addNamedOutput(job, Constants.OUTPUT_ACTOR,
-//                TextOutputFormat.class, NullWritable.class, Text.class);
+        MultipleOutputs.addNamedOutput(job, Constants.OUTPUT_DIRECTOR,
+                TextOutputFormat.class, NullWritable.class, Text.class);
+        MultipleOutputs.addNamedOutput(job, Constants.OUTPUT_ACTOR,
+                TextOutputFormat.class, NullWritable.class, Text.class);
 
         FileSystem dfs = FileSystem.get(outputPath.toUri(), hadoopConfig);
         if (dfs.exists(outputPath)) {
