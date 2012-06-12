@@ -54,13 +54,13 @@ job.setCombinerClass(Authors.CountReducer.class);
 
 \section{19.5.2}
 
-The code of the assignment is placed in \lstinline{nl.tudelft.in4331.hadoop.ex19_5_2} package. It contains a mapper and a reducer, as well as the job description.
+The job files are placed in \lstinline{nl.tudelft.in4331.hadoop.ex19_5_2} package. They consist from a mapper, a reducer and the job description.
 
 To split the incoming XML file into separate \lstinline{<movie>} elements, \lstinline{XMLInputFormat} file is used\footnote{http://xmlandhadoop.blogspot.nl}. With this input format, each \lstinline{map()} call gets a string containing XML description of one film. Later in the mapper this description is parsed with DOM parser and gets deserialized into a \lstinline{Movie} object. The mapper is responsible for emitting two types of key-value pairs for the reducer.
 
 The first pair has key 1 and value needed for "director-and-title" file. The second one respectively has key 2 and value for "title-and-actor" file.
 
-Reducer accepts these pairs and writes them into two different files using \lstinline{MultipleOutputs} with no additional transformations. 
+Reducer accepts these pairs and writes the values into two different files using \lstinline{MultipleOutputs} according to the keys with no additional transformations. 
 
 After the job is completed, we get the following contents of the files in Hadoop file system.
 
