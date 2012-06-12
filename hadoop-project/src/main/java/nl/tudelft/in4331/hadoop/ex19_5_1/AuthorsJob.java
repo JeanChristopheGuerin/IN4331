@@ -1,4 +1,4 @@
-package nl.tudelft.in4331.hadoop;
+package nl.tudelft.in4331.hadoop.ex19_5_1;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -28,6 +28,7 @@ public class AuthorsJob {
 
         /* Define the Mapper and the Reducer */
         job.setMapperClass(Authors.AuthorsMapper.class);
+        job.setCombinerClass(Authors.CountReducer.class);
         job.setReducerClass(Authors.CountReducer.class);
 
         /* Define the output type */

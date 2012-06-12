@@ -1,4 +1,4 @@
-package nl.tudelft.in4331.hadoop;
+package nl.tudelft.in4331.hadoop.ex19_5_1;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;

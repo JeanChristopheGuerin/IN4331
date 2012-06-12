@@ -1,0 +1,57 @@
+\documentclass[a4paper, notitlepage]{article}
+\usepackage{fullpage}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{courier}
+\usepackage{graphicx}
+\graphicspath{{./pictures/}}
+ 
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{ltgray}{rgb}{0.9,0.9,0.9}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+ 
+\lstset{ %
+  language=Java,
+  basicstyle=\ttfamily,           % the size of the fonts that are used for the code
+  numbers=left,                   % where to put the line-numbers
+  numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  stepnumber=1,                   % the step between two line-numbers. If it's 1, each line 
+                                  % will be numbered
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{ltgray},      % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  keywordstyle=\color{blue},          % keyword style
+  commentstyle=\color{dkgreen},       % comment style
+  stringstyle=\color{mauve},         % string literal style
+  escapeinside={\%*}{*)},            % if you want to add a comment within your code
+}
+
+\begin{document}
+
+\title{IN4331 Web Data Management, assignment 2 \\
+Large-Scale Data Management with Hadoop}
+\author{Koen Boes (1314785) and Zmitser Zhaleznichenka (4134575)}
+\date{\today}
+\maketitle
+
+\setcounter{secnumdepth}{0}
+
+\section{19.5.1}
+
+As far as the combiner should do the same as the reducer, we can reuse the reducer code to action like a combiner. This can be done by adding the following code to the \lstinline{AuthorsJob.main()} method.
+
+\begin{lstlisting}
+job.setCombinerClass(Authors.CountReducer.class);  
+\end{lstlisting}
+
+\section{19.5.2}
+
+\end{document}
