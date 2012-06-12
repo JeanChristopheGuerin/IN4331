@@ -3,9 +3,9 @@ Due to browser security restrictions preventing the web application from opening
 1. install webserver (apache) with PHP support
 2. install PHP CURL module
 3. create folder WEBROOT/in4331/
-4. make symlink WEBROOT/in4331/01/ to target folder "01_getting_started"
+4. make symlink WEBROOT/in4331/03/ to target folder "03_musicXML_on_line"
 
 Reference:
 http://developer.yahoo.com/javascript/howto-ajax.html
 
-Also, you have to make sure that your eXist server works at port 8080. Otherwise, fix the port value at proxy.php to make proxying work.
+Also, you have to make sure that your eXist server works at port 8899. Otherwise, fix the port value at proxy.php to make proxying work.

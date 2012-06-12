@@ -67,7 +67,6 @@ body
 	background:#4E9258;
 	text-align:center;
 	width:100%; 
-	height:1000px;
 }
 
 #main
@@ -102,12 +101,12 @@ h2
 
 h3
 {
-    font-size:1em;
-    margin-top:0.5em;
-    margin-bottom:0.5em;
-    margin-left:5%;
-    margin-right:5%;
-    text-transform:capitalize;
+	font-size:1em;
+	margin-top:0.5em;
+	margin-bottom:0.5em;
+	margin-left:5%;
+	margin-right:5%;
+	text-transform:capitalize;
 }
 
 h4
@@ -128,6 +127,17 @@ h5
     margin-left:10%;
     margin-right:5%;
     text-transform:capitalize;
+}
+
+#div_movement_lyrics p
+{
+	text-align:center;
+}
+
+#div_movement_sheetmusic iframe
+{
+	width:100%;
+	height:80em;
 }
 
 .contentarea
