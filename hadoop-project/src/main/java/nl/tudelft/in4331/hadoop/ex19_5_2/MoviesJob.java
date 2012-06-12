@@ -9,10 +9,10 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapred.lib.MultipleOutputs;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.mapreduce.lib.output.MultipleOutputs;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 
 import java.io.File;
@@ -33,8 +33,7 @@ public class MoviesJob {
             propertiesPath = Constants.PROPERTIES_FILE;
         }
 
-        Configuration propertiesConfig = null;
-        propertiesConfig = new PropertiesConfiguration(propertiesPath);
+        Configuration propertiesConfig = new PropertiesConfiguration(propertiesPath);
         String input = propertiesConfig.getString("input");
         String output;
 
@@ -53,13 +52,14 @@ public class MoviesJob {
         job.setOutputValueClass(Text.class);
         job.setInputFormatClass(XmlInputFormat.class);
 
-        MultipleOutputs.addNamedOutput(job, "text", TextOutputFormat.class,
-                NullWritable.class, Text.class);
-
-
         FileInputFormat.addInputPath(job, new Path(input));
         Path outputPath = new Path(output);
         FileOutputFormat.setOutputPath(job, outputPath);
+
+//        MultipleOutputs.addNamedOutput(job, Constants.OUTPUT_DIRECTOR,
+//                TextOutputFormat.class, NullWritable.class, Text.class);
+//        MultipleOutputs.addNamedOutput(job, Constants.OUTPUT_ACTOR,
+//                TextOutputFormat.class, NullWritable.class, Text.class);
 
         FileSystem dfs = FileSystem.get(outputPath.toUri(), hadoopConfig);
         if (dfs.exists(outputPath)) {

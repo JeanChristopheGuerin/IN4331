@@ -26,11 +26,10 @@ public class MoviesMapper extends Mapper<Object, Text, IntWritable, Text> {
 
     private static final Log LOGGER = LogFactory.getLog(MoviesMapper.class);
 
-    private DocumentBuilderFactory factory;
     private DocumentBuilder parser;
 
     public MoviesMapper(){
-        factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try{
             parser = factory.newDocumentBuilder();
         } catch (ParserConfigurationException e){
@@ -74,6 +73,7 @@ public class MoviesMapper extends Mapper<Object, Text, IntWritable, Text> {
     }
 
     private Movie parseMovie(Document doc){
+        LOGGER.info("Parsing movie");
         Movie movie = new Movie();
 
         Element root = doc.getDocumentElement();
