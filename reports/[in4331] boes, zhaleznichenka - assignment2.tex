@@ -99,6 +99,141 @@ Sofia Coppola  Marie Antoinette  2006
 
 \section{19.5.3}
 
+\subsection{19.5.3.1}
+
+Load \textit{title-and-actor.txt} and group on the title. The actors (along with their roles) should appear as a nested bag.
+
+\subsubsection{Code}
+
+\begin{lstlisting}
+-- Load records from the title-and-actor.txt file (tab separated).
+file = LOAD '../data/title-and-actor.txt' AS (title: chararray, actor: chararray, year_of_birth: int,role: chararray);
+-- Group the lines by title.
+file_grouped_by_title = GROUP file BY title;
+-- Show a subset of the columns (actor, role) in the output.
+file_grouped_by_title_subset = FOREACH file_grouped_by_title GENERATE group, file.(actor, role);
+-- Output the result.
+STORE file_grouped_by_title_subset into '../results/title-and-actor_group-on-title';
+\end{lstlisting}
+
+\subsubsection{Result}
+
+\begin{lstlisting}
+Heat	{(Al Pacino,Lt. Vincent Hanna),(Jon Voight,Nate),(Val Kilmer,Chris Shiherlis),(Robert De Niro,Neil McCauley)}
+Spider-Man	{(Willem Dafoe,Green Goblin / Norman Osborn),(Tobey Maguire,Spider-Man / Peter Parker),(Kirsten Dunst,Mary Jane Watson)}
+Unforgiven	{(Gene Hackman,Little Bill Daggett),(Clint Eastwood,William 'Bill' Munny),(Morgan Freeman,Ned Logan)}
+Match Point	{(Jonathan Rhys Meyers,Chris Wilton),(Scarlett  Johansson,Nola Rice)}
+Marie Antoinette	{(Jason  Schwartzman,Louis XVI),(Kirsten Dunst,Marie Antoinette)}
+Lost in Translation	{(Bill Murray,Bob Harris),(Scarlett  Johansson,Charlotte)}
+A History of Violence	{(William Hurt,Richie Cusack),(Maria Bello,Eddie Stall),(Ed Harris,Carl Fogarty),(Vigo Mortensen,Tom Stall)}
+\end{lstlisting}
+
+\subsection{19.5.3.2}
+
+Load \textit{director-and-title.txt} and group on the director name. Titles should appear as a nested bag.
+
+\subsubsection{Code}
+
+\begin{lstlisting}
+-- Load records from the title-and-actor.txt file (tab separated).
+file = LOAD '../data/director-and-title.txt' AS (director: chararray, title: chararray, year: int);
+-- Group the lines by title.
+file_grouped_by_director = GROUP file BY director;
+-- Show a subset of the columns (title) in the output.
+file_grouped_by_director_subset = FOREACH file_grouped_by_director GENERATE group, file.(title);
+-- Output the result.
+STORE file_grouped_by_director_subset INTO '../results/director-and-title_group-on-director';
+\end{lstlisting}
+
+\subsubsection{Result}
+
+\begin{lstlisting}
+Sam Raimi	{(Spider-Man)}
+Woody Allen	{(Match Point)}
+Michael Mann	{(Heat)}
+Sofia Coppola	{(Lost in Translation),(Marie Antoinette)}
+Clint Eastwood	{(Unforgiven)}
+David Cronenberg	{(A History of Violence)}
+\end{lstlisting}
+
+\subsection{19.5.3.3}
+
+Apply the \textbf{cogroup} operator to associate a movie, its director and its actors from both sources.
+
+\subsubsection{Code}
+
+\begin{lstlisting}
+-- Load records from the title-and-actor.txt file (tab separated).
+file1 = LOAD '../data/director-and-title.txt' AS (director: chararray, title: chararray, year: int);
+-- Load records from the title-and-actor.txt file (tab separated).
+file2 = LOAD '../data/title-and-actor.txt' AS (title: chararray, actor: chararray, year_of_birth: int,role: chararray);
+-- Cogroup file1 and file2
+cogrouped = COGROUP file1 BY title, file2 BY title;
+-- Show a subset of the columns in the output.
+cogrouped_subset = FOREACH cogrouped GENERATE group, file1.(director), file2.(actor, role);
+-- Output the result.
+STORE cogrouped_subset INTO '../results/director-title-actor_cogroup';
+\end{lstlisting}
+
+\subsubsection{Result}
+
+\begin{lstlisting}
+Heat	{(Michael Mann)}	{(Al Pacino,Lt. Vincent Hanna),(Jon Voight,Nate),(Val Kilmer,Chris Shiherlis),(Robert De Niro,Neil McCauley)}
+Spider-Man	{(Sam Raimi)}	{(Willem Dafoe,Green Goblin / Norman Osborn),(Tobey Maguire,Spider-Man / Peter Parker),(Kirsten Dunst,Mary Jane Watson)}
+Unforgiven	{(Clint Eastwood)}	{(Gene Hackman,Little Bill Daggett),(Clint Eastwood,William 'Bill' Munny),(Morgan Freeman,Ned Logan)}
+Match Point	{(Woody Allen)}	{(Jonathan Rhys Meyers,Chris Wilton),(Scarlett  Johansson,Nola Rice)}
+Marie Antoinette	{(Sofia Coppola)}	{(Jason  Schwartzman,Louis XVI),(Kirsten Dunst,Marie Antoinette)}
+Lost in Translation	{(Sofia Coppola)}	{(Bill Murray,Bob Harris),(Scarlett  Johansson,Charlotte)}
+A History of Violence	{(David Cronenberg)}	{(William Hurt,Richie Cusack),(Maria Bello,Eddie Stall),(Ed Harris,Carl Fogarty),(Vigo Mortensen,Tom Stall)}
+\end{lstlisting}
+
+\subsection{19.5.3.4}
+
+Write a PIG program that retrieves the actors that are also director of some movie: output a tuple for each artist, with two nested bags, one with the movies s/he played a role in, and one with the movies s/he directed.
+
+\subsubsection{Code}
+
+\begin{lstlisting}
+-- Load records from the title-and-actor.txt file (tab separated).
+file1 = LOAD '../data/director-and-title.txt' AS (director: chararray, title: chararray, year: int);
+-- Load records from the title-and-actor.txt file (tab separated).
+file2 = LOAD '../data/title-and-actor.txt' AS (title: chararray, actor: chararray, year_of_birth: int,role: chararray);
+
+-- Cogroup file1 and file2
+cogrouped = COGROUP file1 BY director, file2 BY actor;
+
+-- Generate a subset of the columns in the output.
+cogrouped_subset = FOREACH cogrouped GENERATE group, file2.(title), file1.(title);
+
+-- Filter out actors that didn't direct movies.
+cogrouped_subset_filtered = FILTER cogrouped_subset BY NOT (IsEmpty($1) OR IsEmpty($2));
+
+-- Output the result.
+STORE cogrouped_subset_filtered INTO '../results/actor_that_is_also_director_of_a_movie';
+\end{lstlisting}
+
+\subsubsection{Result}
+
+\begin{lstlisting}
+Clint Eastwood	{(Unforgiven)}	{(Unforgiven)}
+\end{lstlisting}
+
+\subsection{19.5.3.5}
+
+Write a modified version that looks for artists that were both actors and director of a same movie.
+
+\subsubsection{Code}
+
+\begin{lstlisting}
+Unfortunately we weren't able to figure this one out ...
+\end{lstlisting}
+
+\subsubsection{Result}
+
+\begin{lstlisting}
+
+\end{lstlisting}
+
 \section{19.5.4}
 
 \end{document}
