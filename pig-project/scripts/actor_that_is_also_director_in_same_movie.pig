@@ -9,18 +9,20 @@ cogrouped = COGROUP file1 BY director, file2 BY actor;
 -- Generate a subset of the columns in the output.
 cogrouped_subset = FOREACH cogrouped GENERATE group, file2.(title), file1.(title);
 
--- Filter out actors that didn't direct movies.
---cogrouped_subset_filtered = FILTER cogrouped_subset BY NOT (IsEmpty($1) OR IsEmpty($2));
+-- Join both file1 and file2 over the title.
+joined = JOIN file1 by title, file2 by title;
 
-cogrouped_subset_ordered  = 	FOREACH cogrouped_subset {
-					actor_title_ordered = ORDER $1 BY *;
-					director_title_ordered = ORDER $2 BY *;
-					GENERATE group, actor_title_ordered, director_title_ordered;
-				}
+-- Take only the actor and director fields.
+joined_subset = FOREACH joined GENERATE file1::director, file2::actor;
+
+-- Filter out tuple for which the actor in not equal to the director.
+joined_subset_filtered = FILTER joined_subset BY file1::director == file2::actor;
+
+-- Take only the director name (equal to actor name).
+actor_that_is_director = FOREACH joined_subset_filtered GENERATE file1::director;
 
 -- Filter out actors that didn't direct movies the also played in.
---cogrouped_subset_filtered = FILTER cogrouped_subset BY {
---							COUNT(DISTINCT(UNION($1, $2))) < COUNT(UNION( $1, $2));
+cogrouped_subset_filtered = FILTER cogrouped_subset BY $0 == actor_that_is_director;
 
 -- Output the result.
 --STORE cogrouped_subset_filtered INTO '../results/actor_that_is_also_director_in_same_movie';
