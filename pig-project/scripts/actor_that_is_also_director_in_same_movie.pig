@@ -21,8 +21,5 @@ joined_subset_filtered = FILTER joined_subset BY file1::director == file2::actor
 -- Take only the director name (equal to actor name).
 actor_that_is_director = FOREACH joined_subset_filtered GENERATE file1::director;
 
--- Filter out actors that didn't direct movies the also played in.
-cogrouped_subset_filtered = FILTER cogrouped_subset BY $0 == actor_that_is_director;
-
 -- Output the result.
---STORE cogrouped_subset_filtered INTO '../results/actor_that_is_also_director_in_same_movie';
+STORE actor_that_is_director INTO '../results/actor_that_is_also_director_in_same_movie';
