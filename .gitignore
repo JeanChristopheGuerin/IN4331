@@ -8,3 +8,4 @@ reports/.jle/
 **/.idea/
 **/target/
 *.iml
+.DS_Store

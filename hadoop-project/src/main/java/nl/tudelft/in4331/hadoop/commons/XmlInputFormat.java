@@ -86,8 +86,6 @@ public class XmlInputFormat extends TextInputFormat {
         @Override
         public Text getCurrentValue() throws IOException, InterruptedException {
             return value;
-
-
         }
 
         @Override

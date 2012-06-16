@@ -54,9 +54,9 @@ job.setCombinerClass(Authors.CountReducer.class);
 
 \section{19.5.2}
 
-The job files are placed in \lstinline{nl.tudelft.in4331.hadoop.ex19_5_2} package. They consist from a mapper, a reducer and the job description.
+The job files are placed in \lstinline{nl.tudelft.in4331.hadoop.ex19_5_2} package. They consist from a mapper, a reducer and a job description.
 
-To split the incoming XML file into separate \lstinline{<movie>} elements, \lstinline{XMLInputFormat} file is used\footnote{http://xmlandhadoop.blogspot.nl}. With this input format, each \lstinline{map()} call gets a string containing XML description of one film. Later in the mapper this description is parsed with DOM parser and gets deserialized into a \lstinline{Movie} object. The mapper is responsible for emitting two types of key-value pairs for the reducer.
+To split the incoming XML file into separate \lstinline{<movie>} elements, \lstinline{XMLInputFormat} file is used\footnote{http://xmlandhadoop.blogspot.nl}. With this input format, each \lstinline{map()} call gets a string containing XML description of one movie. Later in the mapper this description is parsed with DOM parser and gets deserialized into a \lstinline{Movie} object. The mapper is responsible for emitting two types of key-value pairs for the reducer.
 
 The first pair has key 1 and value needed for "director-and-title" file. The second one respectively has key 2 and value for "title-and-actor" file.
 
@@ -261,5 +261,87 @@ Clint Eastwood
 \end{lstlisting}
 
 \section{19.5.4}
+
+For this project we decided to work with \lstinline{movies.xml} file as it is and parse it the same way it was done in exercise 19.5.2. We used the movies' summaries as the data source and created movie IDs to distinguish the movies in the resulting files. The IDs were generated automatically by hashing the titles of the movies.
+
+We have created two different jobs having different reducers but sharing the same mapper to complete the assignment. These files are located in \lstinline{nl.tudelft.in4331.hadoop.ex19_5_4} package. We use \lstinline{NormalizationMapper} to parse the data file to extract the summaries. Then, we split the summary text into the tokens based on the white spaces and remove non-alphanumeric symbols not to introduce noise to the results. The mapper emits the current term as the key and a \lstinline{Writable} tuple with \lstinline{movieId} being the first element and serialized list of token positions in the text being the second element. To find the term frequencies, we use \lstinline{NormalizationReducer} class that counts numbers of positions of the terms coming from the mapper and \lstinline{NormalizationJob} that launches the computation. Normalization returns the results in the following format.
+
+\begin{lstlisting}
+a	18
+about	1
+abused	1
+after	1
+aging	1
+ago	1
+all	2
+an	1
+and	22
+antoinette	1
+antonia	1
+anyone	1
+anything	1
+archduchess	1
+are	2
+armored	1
+around	1
+as	4
+at	4
+attracts	1
+aunt	1
+austria	2
+banks	1
+based	1
+be	1
+been	1
+between	2
+big	3
+bill	1
+billing	1
+bills	1
+birth	1
+bitten	1
+...
+\end{lstlisting}
+
+To output the documents containing given terms and IDF values for the terms, we use the same mapper as above but work with another reducer, \lstinline{DocLevelIndexReducer}. The job description is provided in \lstinline{DocLevelIndexJob} class. It returns the following results.
+
+\begin{lstlisting}
+a	-3|16|18|22|38 (1.2)
+about	17 (6.0)
+abused	17 (6.0)
+after	16 (6.0)
+aging	-3 (6.0)
+ago	22 (6.0)
+all	38 (6.0)
+an	18 (6.0)
+and	-3|16|17|18|22|38 (1.0)
+antoinette	17 (6.0)
+antonia	17 (6.0)
+anyone	38 (6.0)
+anything	22 (6.0)
+archduchess	17 (6.0)
+are	22 (6.0)
+armored	22 (6.0)
+around	22 (6.0)
+as	-3|16|18|38 (1.5)
+at	-3|18|22|38 (1.5)
+attracts	-3 (6.0)
+aunt	16 (6.0)
+austria	17 (6.0)
+banks	22 (6.0)
+based	17 (6.0)
+be	18 (6.0)
+been	-3 (6.0)
+between	-3|18 (3.0)
+big	-3|22 (3.0)
+bill	-3 (6.0)
+billing	-3 (6.0)
+bills	-3 (6.0)
+birth	17 (6.0)
+bitten	16 (6.0)
+...
+\end{lstlisting} 
+
+Movie IDs are separated by the vertical lines and IDF value is provided between the parentheses.
 
 \end{document}
