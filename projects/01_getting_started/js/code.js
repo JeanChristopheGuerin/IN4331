@@ -15,7 +15,7 @@ function loadDynamicContent()
 
 function loadGenres()
 {
-	var query = "for $g in distinct-values(/movies/movie/genre) return <genre> {$g} </genre>";
+	var query = "for $g in distinct-values(/movies/movie/genre) order by $g return <genre> {$g} </genre>";
 	var genres = queryEXist(file, query);
 	var transform2inputs = loadXMLDoc(transform2inputsFile);
 	
@@ -24,11 +24,11 @@ function loadGenres()
 
 function loadYears()
 {
-	var query = "for $y in distinct-values(/movies/movie/year) return <year> {$y} </year>";
-	var genres = queryEXist(file, query);
+	var query = "for $y in distinct-values(/movies/movie/year) order by $y return <year> {$y} </year>";
+	var years = queryEXist(file, query);
 	var transform2inputs = loadXMLDoc(transform2inputsFile);
 	
-	displayResult(genres, transform2inputs, elementYear);
+	displayResult(years, transform2inputs, elementYear);
 }
 
 function buildSearchQuery(title, genre, director, actor, year, keywords)
@@ -43,6 +43,7 @@ function buildSearchQuery(title, genre, director, actor, year, keywords)
 	"and $m/genre='" + genre + "' " + 
 	"and $m/year='" + year + "' " +
 	"return $m";
+	
 	return query;
 }
 
