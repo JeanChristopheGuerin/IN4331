@@ -12,14 +12,13 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Map;
 import java.util.Set;
 
@@ -41,7 +40,10 @@ public class MoviesMapper extends Mapper<Object, Text, IntWritable, Text> {
 
     public void map(Object key, Text value, Context context) throws IOException, InterruptedException{
         String stringValue = value.toString();
-        InputStream is = new ByteArrayInputStream(stringValue.getBytes());
+        InputStream inputStream = new ByteArrayInputStream(stringValue.getBytes());
+        Reader reader = new InputStreamReader(inputStream,"UTF-8");
+        InputSource is = new InputSource(reader);
+        is.setEncoding("UTF-8");
         Document doc;
 
         try {
